@@ -1,0 +1,653 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2CD2A40225BEA90E0055E0DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A40125BEA90E0055E0DC /* AppDelegate.swift */; };
+		2CD2A40425BEA90E0055E0DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A40325BEA90E0055E0DC /* SceneDelegate.swift */; };
+		2CD2A40625BEA90E0055E0DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A40525BEA90E0055E0DC /* ViewController.swift */; };
+		2CD2A40C25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A40A25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld */; };
+		2CD2A40E25BEA9110055E0DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CD2A40D25BEA9110055E0DC /* Assets.xcassets */; };
+		2CD2A41125BEA9110055E0DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD2A40F25BEA9110055E0DC /* LaunchScreen.storyboard */; };
+		2CD2A41C25BEA9120055E0DC /* GhibliBibliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A41B25BEA9120055E0DC /* GhibliBibliTests.swift */; };
+		2CD2A42725BEA9120055E0DC /* GhibliBibliUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A42625BEA9120055E0DC /* GhibliBibliUITests.swift */; };
+		2CD2A44525BEAA540055E0DC /* PersistanceManager in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD2A44425BEAA540055E0DC /* PersistanceManager */; };
+		2CD2A44A25BEAACC0055E0DC /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A44925BEAACC0055E0DC /* PersistenceController.swift */; };
+		2CD2A45025BEAB2D0055E0DC /* ConsoleSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD2A44F25BEAB2D0055E0DC /* ConsoleSwift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2CD2A41825BEA9120055E0DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CD2A3F625BEA90E0055E0DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CD2A3FD25BEA90E0055E0DC;
+			remoteInfo = GhibliBibli;
+		};
+		2CD2A42325BEA9120055E0DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CD2A3F625BEA90E0055E0DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CD2A3FD25BEA90E0055E0DC;
+			remoteInfo = GhibliBibli;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2CD2A3FE25BEA90E0055E0DC /* GhibliBibli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GhibliBibli.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CD2A40125BEA90E0055E0DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2CD2A40325BEA90E0055E0DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		2CD2A40525BEA90E0055E0DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2CD2A40B25BEA90E0055E0DC /* GhibliBibli.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GhibliBibli.xcdatamodel; sourceTree = "<group>"; };
+		2CD2A40D25BEA9110055E0DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2CD2A41025BEA9110055E0DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2CD2A41225BEA9110055E0DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CD2A41725BEA9120055E0DC /* GhibliBibliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GhibliBibliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CD2A41B25BEA9120055E0DC /* GhibliBibliTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhibliBibliTests.swift; sourceTree = "<group>"; };
+		2CD2A41D25BEA9120055E0DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CD2A42225BEA9120055E0DC /* GhibliBibliUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GhibliBibliUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CD2A42625BEA9120055E0DC /* GhibliBibliUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhibliBibliUITests.swift; sourceTree = "<group>"; };
+		2CD2A42825BEA9120055E0DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CD2A44925BEAACC0055E0DC /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2CD2A3FB25BEA90E0055E0DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CD2A45025BEAB2D0055E0DC /* ConsoleSwift in Frameworks */,
+				2CD2A44525BEAA540055E0DC /* PersistanceManager in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CD2A41425BEA9120055E0DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CD2A41F25BEA9120055E0DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2CD2A3F525BEA90E0055E0DC = {
+			isa = PBXGroup;
+			children = (
+				2CD2A40025BEA90E0055E0DC /* GhibliBibli */,
+				2CD2A41A25BEA9120055E0DC /* GhibliBibliTests */,
+				2CD2A42525BEA9120055E0DC /* GhibliBibliUITests */,
+				2CD2A3FF25BEA90E0055E0DC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2CD2A3FF25BEA90E0055E0DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2A3FE25BEA90E0055E0DC /* GhibliBibli.app */,
+				2CD2A41725BEA9120055E0DC /* GhibliBibliTests.xctest */,
+				2CD2A42225BEA9120055E0DC /* GhibliBibliUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2CD2A40025BEA90E0055E0DC /* GhibliBibli */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2A40125BEA90E0055E0DC /* AppDelegate.swift */,
+				2CD2A40325BEA90E0055E0DC /* SceneDelegate.swift */,
+				2CD2A40525BEA90E0055E0DC /* ViewController.swift */,
+				2CD2A40D25BEA9110055E0DC /* Assets.xcassets */,
+				2CD2A40F25BEA9110055E0DC /* LaunchScreen.storyboard */,
+				2CD2A41225BEA9110055E0DC /* Info.plist */,
+				2CD2A40A25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld */,
+				2CD2A44925BEAACC0055E0DC /* PersistenceController.swift */,
+			);
+			path = GhibliBibli;
+			sourceTree = "<group>";
+		};
+		2CD2A41A25BEA9120055E0DC /* GhibliBibliTests */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2A41B25BEA9120055E0DC /* GhibliBibliTests.swift */,
+				2CD2A41D25BEA9120055E0DC /* Info.plist */,
+			);
+			path = GhibliBibliTests;
+			sourceTree = "<group>";
+		};
+		2CD2A42525BEA9120055E0DC /* GhibliBibliUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2A42625BEA9120055E0DC /* GhibliBibliUITests.swift */,
+				2CD2A42825BEA9120055E0DC /* Info.plist */,
+			);
+			path = GhibliBibliUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2CD2A3FD25BEA90E0055E0DC /* GhibliBibli */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CD2A42B25BEA9120055E0DC /* Build configuration list for PBXNativeTarget "GhibliBibli" */;
+			buildPhases = (
+				2CD2A3FA25BEA90E0055E0DC /* Sources */,
+				2CD2A3FB25BEA90E0055E0DC /* Frameworks */,
+				2CD2A3FC25BEA90E0055E0DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GhibliBibli;
+			packageProductDependencies = (
+				2CD2A44425BEAA540055E0DC /* PersistanceManager */,
+				2CD2A44F25BEAB2D0055E0DC /* ConsoleSwift */,
+			);
+			productName = GhibliBibli;
+			productReference = 2CD2A3FE25BEA90E0055E0DC /* GhibliBibli.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2CD2A41625BEA9120055E0DC /* GhibliBibliTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CD2A42E25BEA9120055E0DC /* Build configuration list for PBXNativeTarget "GhibliBibliTests" */;
+			buildPhases = (
+				2CD2A41325BEA9120055E0DC /* Sources */,
+				2CD2A41425BEA9120055E0DC /* Frameworks */,
+				2CD2A41525BEA9120055E0DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2CD2A41925BEA9120055E0DC /* PBXTargetDependency */,
+			);
+			name = GhibliBibliTests;
+			productName = GhibliBibliTests;
+			productReference = 2CD2A41725BEA9120055E0DC /* GhibliBibliTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2CD2A42125BEA9120055E0DC /* GhibliBibliUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CD2A43125BEA9120055E0DC /* Build configuration list for PBXNativeTarget "GhibliBibliUITests" */;
+			buildPhases = (
+				2CD2A41E25BEA9120055E0DC /* Sources */,
+				2CD2A41F25BEA9120055E0DC /* Frameworks */,
+				2CD2A42025BEA9120055E0DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2CD2A42425BEA9120055E0DC /* PBXTargetDependency */,
+			);
+			name = GhibliBibliUITests;
+			productName = GhibliBibliUITests;
+			productReference = 2CD2A42225BEA9120055E0DC /* GhibliBibliUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2CD2A3F625BEA90E0055E0DC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					2CD2A3FD25BEA90E0055E0DC = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					2CD2A41625BEA9120055E0DC = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 2CD2A3FD25BEA90E0055E0DC;
+					};
+					2CD2A42125BEA9120055E0DC = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 2CD2A3FD25BEA90E0055E0DC;
+					};
+				};
+			};
+			buildConfigurationList = 2CD2A3F925BEA90E0055E0DC /* Build configuration list for PBXProject "GhibliBibli" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2CD2A3F525BEA90E0055E0DC;
+			packageReferences = (
+				2CD2A44325BEAA540055E0DC /* XCRemoteSwiftPackageReference "PersistanceManager" */,
+				2CD2A44E25BEAB2D0055E0DC /* XCRemoteSwiftPackageReference "ConsoleSwift" */,
+			);
+			productRefGroup = 2CD2A3FF25BEA90E0055E0DC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2CD2A3FD25BEA90E0055E0DC /* GhibliBibli */,
+				2CD2A41625BEA9120055E0DC /* GhibliBibliTests */,
+				2CD2A42125BEA9120055E0DC /* GhibliBibliUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2CD2A3FC25BEA90E0055E0DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CD2A41125BEA9110055E0DC /* LaunchScreen.storyboard in Resources */,
+				2CD2A40E25BEA9110055E0DC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CD2A41525BEA9120055E0DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CD2A42025BEA9120055E0DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2CD2A3FA25BEA90E0055E0DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CD2A40625BEA90E0055E0DC /* ViewController.swift in Sources */,
+				2CD2A40C25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld in Sources */,
+				2CD2A40225BEA90E0055E0DC /* AppDelegate.swift in Sources */,
+				2CD2A40425BEA90E0055E0DC /* SceneDelegate.swift in Sources */,
+				2CD2A44A25BEAACC0055E0DC /* PersistenceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CD2A41325BEA9120055E0DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CD2A41C25BEA9120055E0DC /* GhibliBibliTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CD2A41E25BEA9120055E0DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CD2A42725BEA9120055E0DC /* GhibliBibliUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2CD2A41925BEA9120055E0DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2CD2A3FD25BEA90E0055E0DC /* GhibliBibli */;
+			targetProxy = 2CD2A41825BEA9120055E0DC /* PBXContainerItemProxy */;
+		};
+		2CD2A42425BEA9120055E0DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2CD2A3FD25BEA90E0055E0DC /* GhibliBibli */;
+			targetProxy = 2CD2A42325BEA9120055E0DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2CD2A40F25BEA9110055E0DC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2CD2A41025BEA9110055E0DC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2CD2A42925BEA9120055E0DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2CD2A42A25BEA9120055E0DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2CD2A42C25BEA9120055E0DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DXUKH9VF73;
+				INFOPLIST_FILE = GhibliBibli/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.kamaal.GhibliBibli;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		2CD2A42D25BEA9120055E0DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DXUKH9VF73;
+				INFOPLIST_FILE = GhibliBibli/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.kamaal.GhibliBibli;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		2CD2A42F25BEA9120055E0DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DXUKH9VF73;
+				INFOPLIST_FILE = GhibliBibliTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.kamaal.GhibliBibliTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GhibliBibli.app/GhibliBibli";
+			};
+			name = Debug;
+		};
+		2CD2A43025BEA9120055E0DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DXUKH9VF73;
+				INFOPLIST_FILE = GhibliBibliTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.kamaal.GhibliBibliTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GhibliBibli.app/GhibliBibli";
+			};
+			name = Release;
+		};
+		2CD2A43225BEA9120055E0DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DXUKH9VF73;
+				INFOPLIST_FILE = GhibliBibliUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.kamaal.GhibliBibliUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GhibliBibli;
+			};
+			name = Debug;
+		};
+		2CD2A43325BEA9120055E0DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DXUKH9VF73;
+				INFOPLIST_FILE = GhibliBibliUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.kamaal.GhibliBibliUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GhibliBibli;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2CD2A3F925BEA90E0055E0DC /* Build configuration list for PBXProject "GhibliBibli" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CD2A42925BEA9120055E0DC /* Debug */,
+				2CD2A42A25BEA9120055E0DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2CD2A42B25BEA9120055E0DC /* Build configuration list for PBXNativeTarget "GhibliBibli" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CD2A42C25BEA9120055E0DC /* Debug */,
+				2CD2A42D25BEA9120055E0DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2CD2A42E25BEA9120055E0DC /* Build configuration list for PBXNativeTarget "GhibliBibliTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CD2A42F25BEA9120055E0DC /* Debug */,
+				2CD2A43025BEA9120055E0DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2CD2A43125BEA9120055E0DC /* Build configuration list for PBXNativeTarget "GhibliBibliUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CD2A43225BEA9120055E0DC /* Debug */,
+				2CD2A43325BEA9120055E0DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2CD2A44325BEAA540055E0DC /* XCRemoteSwiftPackageReference "PersistanceManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kamaal111/PersistanceManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		2CD2A44E25BEAB2D0055E0DC /* XCRemoteSwiftPackageReference "ConsoleSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kamaal111/ConsoleSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2CD2A44425BEAA540055E0DC /* PersistanceManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CD2A44325BEAA540055E0DC /* XCRemoteSwiftPackageReference "PersistanceManager" */;
+			productName = PersistanceManager;
+		};
+		2CD2A44F25BEAB2D0055E0DC /* ConsoleSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CD2A44E25BEAB2D0055E0DC /* XCRemoteSwiftPackageReference "ConsoleSwift" */;
+			productName = ConsoleSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		2CD2A40A25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2CD2A40B25BEA90E0055E0DC /* GhibliBibli.xcdatamodel */,
+			);
+			currentVersion = 2CD2A40B25BEA90E0055E0DC /* GhibliBibli.xcdatamodel */;
+			path = GhibliBibli.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 2CD2A3F625BEA90E0055E0DC /* Project object */;
+}

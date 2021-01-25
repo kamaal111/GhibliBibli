@@ -85,9 +85,8 @@
 		2CD2A3F525BEA90E0055E0DC = {
 			isa = PBXGroup;
 			children = (
+				2CD2A45425BEAC900055E0DC /* Tests */,
 				2CD2A40025BEA90E0055E0DC /* GhibliBibli */,
-				2CD2A41A25BEA9120055E0DC /* GhibliBibliTests */,
-				2CD2A42525BEA9120055E0DC /* GhibliBibliUITests */,
 				2CD2A3FF25BEA90E0055E0DC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -105,14 +104,13 @@
 		2CD2A40025BEA90E0055E0DC /* GhibliBibli */ = {
 			isa = PBXGroup;
 			children = (
+				2CD2A46425BEAD500055E0DC /* Controllers */,
+				2CD2A46225BEAD2C0055E0DC /* Models */,
 				2CD2A40125BEA90E0055E0DC /* AppDelegate.swift */,
 				2CD2A40325BEA90E0055E0DC /* SceneDelegate.swift */,
-				2CD2A40525BEA90E0055E0DC /* ViewController.swift */,
 				2CD2A40D25BEA9110055E0DC /* Assets.xcassets */,
 				2CD2A40F25BEA9110055E0DC /* LaunchScreen.storyboard */,
 				2CD2A41225BEA9110055E0DC /* Info.plist */,
-				2CD2A40A25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld */,
-				2CD2A44925BEAACC0055E0DC /* PersistenceController.swift */,
 			);
 			path = GhibliBibli;
 			sourceTree = "<group>";
@@ -133,6 +131,56 @@
 				2CD2A42825BEA9120055E0DC /* Info.plist */,
 			);
 			path = GhibliBibliUITests;
+			sourceTree = "<group>";
+		};
+		2CD2A45425BEAC900055E0DC /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2A42525BEA9120055E0DC /* GhibliBibliUITests */,
+				2CD2A41A25BEA9120055E0DC /* GhibliBibliTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		2CD2A46125BEAD1F0055E0DC /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2A44925BEAACC0055E0DC /* PersistenceController.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		2CD2A46225BEAD2C0055E0DC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2A46325BEAD320055E0DC /* CoreData */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2CD2A46325BEAD320055E0DC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2A40A25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		2CD2A46425BEAD500055E0DC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2A46125BEAD1F0055E0DC /* Utilities */,
+				2CD2A46525BEAD5F0055E0DC /* ViewControllers */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2CD2A46525BEAD5F0055E0DC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2CD2A40525BEA90E0055E0DC /* ViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -486,7 +534,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DXUKH9VF73;
-				INFOPLIST_FILE = GhibliBibliTests/Info.plist;
+				INFOPLIST_FILE = Tests/GhibliBibliTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -508,7 +556,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DXUKH9VF73;
-				INFOPLIST_FILE = GhibliBibliTests/Info.plist;
+				INFOPLIST_FILE = Tests/GhibliBibliTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -529,7 +577,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DXUKH9VF73;
-				INFOPLIST_FILE = GhibliBibliUITests/Info.plist;
+				INFOPLIST_FILE = Tests/GhibliBibliUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -549,7 +597,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DXUKH9VF73;
-				INFOPLIST_FILE = GhibliBibliUITests/Info.plist;
+				INFOPLIST_FILE = Tests/GhibliBibliUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

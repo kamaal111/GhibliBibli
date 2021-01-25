@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C49035A25BF39240099A74D /* GhibliNet in Frameworks */ = {isa = PBXBuildFile; productRef = 2C49035925BF39240099A74D /* GhibliNet */; };
 		2CD2A40225BEA90E0055E0DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A40125BEA90E0055E0DC /* AppDelegate.swift */; };
 		2CD2A40425BEA90E0055E0DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A40325BEA90E0055E0DC /* SceneDelegate.swift */; };
 		2CD2A40625BEA90E0055E0DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A40525BEA90E0055E0DC /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C500E9325BEAE330011F06B /* GhibliNet */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GhibliNet; sourceTree = "<group>"; };
 		2CD2A3FE25BEA90E0055E0DC /* GhibliBibli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GhibliBibli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD2A40125BEA90E0055E0DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CD2A40325BEA90E0055E0DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			files = (
 				2CD2A45025BEAB2D0055E0DC /* ConsoleSwift in Frameworks */,
 				2CD2A44525BEAA540055E0DC /* PersistanceManager in Frameworks */,
+				2C49035A25BF39240099A74D /* GhibliNet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,12 +85,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C49035825BF39240099A74D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C500E9225BEAE000011F06B /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				2C500E9325BEAE330011F06B /* GhibliNet */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
 		2CD2A3F525BEA90E0055E0DC = {
 			isa = PBXGroup;
 			children = (
+				2C500E9225BEAE000011F06B /* Packages */,
 				2CD2A45425BEAC900055E0DC /* Tests */,
 				2CD2A40025BEA90E0055E0DC /* GhibliBibli */,
 				2CD2A3FF25BEA90E0055E0DC /* Products */,
+				2C49035825BF39240099A74D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -202,6 +222,7 @@
 			packageProductDependencies = (
 				2CD2A44425BEAA540055E0DC /* PersistanceManager */,
 				2CD2A44F25BEAB2D0055E0DC /* ConsoleSwift */,
+				2C49035925BF39240099A74D /* GhibliNet */,
 			);
 			productName = GhibliBibli;
 			productReference = 2CD2A3FE25BEA90E0055E0DC /* GhibliBibli.app */;
@@ -672,6 +693,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2C49035925BF39240099A74D /* GhibliNet */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GhibliNet;
+		};
 		2CD2A44425BEAA540055E0DC /* PersistanceManager */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2CD2A44325BEAA540055E0DC /* XCRemoteSwiftPackageReference "PersistanceManager" */;

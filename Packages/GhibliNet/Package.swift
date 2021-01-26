@@ -11,13 +11,12 @@ let package = Package(
             targets: ["GhibliNet"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/kamaal111/XiphiasNet.git", from: "3.0.5"),
-        .package(url: "https://github.com/kamaal111/ShrimpExtensions.git", from: "1.8.0")
+        .package(url: "https://github.com/kamaal111/XiphiasNet.git", from: "3.0.5")
     ],
     targets: [
         .target(
             name: "GhibliNet",
-            dependencies: ["XiphiasNet", "ShrimpExtensions"]),
+            dependencies: ["XiphiasNet"]),
         .testTarget(
             name: "GhibliNetTests",
             dependencies: ["GhibliNet"]),

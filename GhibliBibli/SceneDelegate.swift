@@ -14,7 +14,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = UINavigationController(rootViewController: ViewController())
+        let layout = UICollectionViewFlowLayout()
+        let homeCollectionViewController = HomeCollectionViewController(layout: layout)
+        window.rootViewController = UINavigationController(rootViewController: homeCollectionViewController)
         window.backgroundColor = .systemBackground
         self.window = window
         window.makeKeyAndVisible()

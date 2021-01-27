@@ -14,10 +14,10 @@ private let footerReuseIdentifier = "Footer"
 
 class HomeCollectionViewController: UICollectionViewController {
 
-    var preview: Bool?
-    var networker: GhibliNet?
+    private var preview: Bool?
+    private var networker: GhibliNet?
 
-    convenience init(layout: UICollectionViewLayout, preview: Bool = false) {
+    convenience init(layout: UICollectionViewFlowLayout, preview: Bool = false) {
         self.init(collectionViewLayout: layout)
         self.preview = preview
         self.networker = GhibliNet(preview: preview)
@@ -145,3 +145,13 @@ class FooterView: UICollectionReusableView {
     }()
 
 }
+
+#if DEBUG
+import SwiftUI
+struct HomeCollectionViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        UINavigationController(rootViewController: HomeCollectionViewController(layout: UICollectionViewFlowLayout(), preview: true)).toSwiftUIView()
+            .edgesIgnoringSafeArea(.all)
+    }
+}
+#endif

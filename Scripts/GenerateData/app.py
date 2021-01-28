@@ -122,8 +122,22 @@ def to_modified_locations(location):
 modified_locations_list = list(map(to_modified_locations, raw_data["locations"]))
 
 
+def to_modified_vehicles(vehicle):
+    return {
+        "id": vehicle["id"],
+        "name": vehicle["name"],
+        "description": vehicle["description"],
+        "vehicle_class": vehicle["vehicle_class"],
+        "length": int(vehicle["length"].replace(",", "")),
+        "pilot": to_just_uuid(vehicle["pilot"]),
+        "films": to_just_uuid(vehicle["films"]),
+    }
+
+modified_vehicles_list = list(map(to_modified_vehicles, raw_data["vehicles"]))
+
+
 modified_films_json = json.dumps(modified_films_list, indent=2, ensure_ascii=False)
 modified_species_json = json.dumps(modified_species_list, indent=2, ensure_ascii=False)
 modified_person_json = json.dumps(modified_person_list, indent=2, ensure_ascii=False)
 modified_locations_json = json.dumps(modified_locations_list, indent=2, ensure_ascii=False)
-print(modified_locations_json)
+modified_vehicles_json = json.dumps(modified_vehicles_list, indent=2, ensure_ascii=False)

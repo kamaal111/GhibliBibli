@@ -109,7 +109,21 @@ def to_modified_people(person):
 modified_person_list = list(map(to_modified_people, raw_data["people"]))
 
 
+def to_modified_locations(location):
+    return {
+        "id": location["id"],
+        "name": location["name"],
+        "climate": location["climate"],
+        "terrain": location["terrain"],
+        "surface_water": int(location["surface_water"]),
+        "films": list(map_urls_to_uuids(location["films"])),
+    }
+
+modified_locations_list = list(map(to_modified_locations, raw_data["locations"]))
+
+
 modified_films_json = json.dumps(modified_films_list, indent=2, ensure_ascii=False)
 modified_species_json = json.dumps(modified_species_list, indent=2, ensure_ascii=False)
 modified_person_json = json.dumps(modified_person_list, indent=2, ensure_ascii=False)
-print(modified_person_json)
+modified_locations_json = json.dumps(modified_locations_list, indent=2, ensure_ascii=False)
+print(modified_locations_json)

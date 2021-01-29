@@ -52,7 +52,7 @@ class HomeCollectionViewController: UICollectionViewController {
         if indexPath.row % 2 == 0 {
             cell.backgroundColor = .red
         } else {
-            cell.backgroundColor = .green
+            cell.backgroundColor = .accentColor
         }
         return cell
     }

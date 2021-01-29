@@ -3,6 +3,7 @@
 import json
 import os
 import sys
+import shutil
 
 
 def to_just_uuid(url: str):
@@ -70,7 +71,10 @@ def main(argv):
     def map_colors_with_hex_color(colors):
         return map(with_hex_color, colors.split(", "))
 
-    film_images_dir_content = list(map(lambda url: (url.split(".jpg")[0]), os.listdir(os.path.join(dirname, 'film_images'))))
+
+    film_images_path = os.path.join(dirname, 'film_images')
+    film_images_dir_content = list(map(lambda url: (url.split(".jpg")[0]), os.listdir(film_images_path)))
+
 
     def to_modified_films(film):
         film_id = film["id"]
@@ -166,6 +170,13 @@ def main(argv):
         json.dump(modified_locations_list, locations_json_file, indent=2, ensure_ascii=False)
     with open(f"{output_path}vehicles.json", 'w') as vehicles_json_file:
         json.dump(modified_vehicles_list, vehicles_json_file, indent=2, ensure_ascii=False)
+    new_images_dir = f"{output_path}/Images"
+    if not os.path.exists(new_images_dir):
+        os.makedirs(new_images_dir)
+    for image_name in film_images_dir_content:
+        image_path = f"{image_name}.jpg"
+        shutil.copy2(os.path.join(film_images_path, image_path), os.path.join(new_images_dir, image_path))
+
 
 if __name__ == "__main__":
    main(sys.argv[1:])

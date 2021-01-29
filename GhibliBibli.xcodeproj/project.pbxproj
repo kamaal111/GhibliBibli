@@ -8,11 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C03985F25C3EB6F004028ED /* UIColor+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C03985E25C3EB6F004028ED /* UIColor+extensions.swift */; };
-		2C03986D25C3ECE9004028ED /* species.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C03986825C3ECE9004028ED /* species.json */; };
-		2C03986E25C3ECE9004028ED /* vehicles.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C03986925C3ECE9004028ED /* vehicles.json */; };
-		2C03986F25C3ECE9004028ED /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C03986A25C3ECE9004028ED /* locations.json */; };
-		2C03987025C3ECE9004028ED /* people.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C03986B25C3ECE9004028ED /* people.json */; };
-		2C03987125C3ECE9004028ED /* films.json in Resources */ = {isa = PBXBuildFile; fileRef = 2C03986C25C3ECE9004028ED /* films.json */; };
 		2C49035A25BF39240099A74D /* GhibliNet in Frameworks */ = {isa = PBXBuildFile; productRef = 2C49035925BF39240099A74D /* GhibliNet */; };
 		2C60057B25BF75B6007C01B3 /* UIViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60057A25BF75B6007C01B3 /* UIViewController+extensions.swift */; };
 		2C88916A25BFF9D9006795FA /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88916925BFF9D9006795FA /* HomeCollectionViewController.swift */; };
@@ -47,11 +42,6 @@
 
 /* Begin PBXFileReference section */
 		2C03985E25C3EB6F004028ED /* UIColor+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extensions.swift"; sourceTree = "<group>"; };
-		2C03986825C3ECE9004028ED /* species.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = species.json; sourceTree = "<group>"; };
-		2C03986925C3ECE9004028ED /* vehicles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vehicles.json; sourceTree = "<group>"; };
-		2C03986A25C3ECE9004028ED /* locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
-		2C03986B25C3ECE9004028ED /* people.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = people.json; sourceTree = "<group>"; };
-		2C03986C25C3ECE9004028ED /* films.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = films.json; sourceTree = "<group>"; };
 		2C500E9325BEAE330011F06B /* GhibliNet */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GhibliNet; sourceTree = "<group>"; };
 		2C60057A25BF75B6007C01B3 /* UIViewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extensions.swift"; sourceTree = "<group>"; };
 		2C88916925BFF9D9006795FA /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
@@ -102,22 +92,9 @@
 		2C03985A25C3EAB0004028ED /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2C03986325C3EC42004028ED /* Data */,
 				2CD2A40D25BEA9110055E0DC /* Assets.xcassets */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		2C03986325C3EC42004028ED /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				2C03986C25C3ECE9004028ED /* films.json */,
-				2C03986A25C3ECE9004028ED /* locations.json */,
-				2C03986B25C3ECE9004028ED /* people.json */,
-				2C03986825C3ECE9004028ED /* species.json */,
-				2C03986925C3ECE9004028ED /* vehicles.json */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		2C49035825BF39240099A74D /* Frameworks */ = {
@@ -361,11 +338,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C03986E25C3ECE9004028ED /* vehicles.json in Resources */,
-				2C03986D25C3ECE9004028ED /* species.json in Resources */,
-				2C03987025C3ECE9004028ED /* people.json in Resources */,
-				2C03986F25C3ECE9004028ED /* locations.json in Resources */,
-				2C03987125C3ECE9004028ED /* films.json in Resources */,
 				2CD2A41125BEA9110055E0DC /* LaunchScreen.storyboard in Resources */,
 				2CD2A40E25BEA9110055E0DC /* Assets.xcassets in Resources */,
 			);
@@ -404,7 +376,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\npython3 Scripts/GenerateData/app.py -o=GhibliBibli/Resources/Data\n";
+			shellScript = "\npython3 Scripts/GenerateData/app.py -o=Packages/GhibliNet/Sources/GhibliNet/Resources/Data\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

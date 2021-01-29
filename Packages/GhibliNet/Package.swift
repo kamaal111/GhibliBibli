@@ -16,7 +16,8 @@ let package = Package(
     targets: [
         .target(
             name: "GhibliNet",
-            dependencies: ["XiphiasNet"]),
+            dependencies: ["XiphiasNet"],
+            resources: [.process("Resources")]),
         .testTarget(
             name: "GhibliNetTests",
             dependencies: ["GhibliNet"]),

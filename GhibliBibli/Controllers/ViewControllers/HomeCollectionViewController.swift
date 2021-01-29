@@ -10,12 +10,19 @@ import GhibliNet
 
 private let reuseIdentifier = "Cell"
 private let headerReuseIdentifier = "Header"
-private let footerReuseIdentifier = "Footer"
 
 class HomeCollectionViewController: UICollectionViewController {
 
     private var preview: Bool?
     private var networker: GhibliNet?
+
+    var ghibliFilms: [GhibliFilm] = [] {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
+    }
 
     convenience init(layout: UICollectionViewFlowLayout, preview: Bool = false) {
         self.init(collectionViewLayout: layout)
@@ -34,14 +41,23 @@ class HomeCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
-        self.collectionView.register(FooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerReuseIdentifier)
+        self.collectionView.register(FilmCellView.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.register(HeaderView.self,
+                                     forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                     withReuseIdentifier: headerReuseIdentifier)
 
         self.collectionView.backgroundColor = .systemBackground
 
-        DispatchQueue.global(qos: .utility).async {
-            print(self.networker!.getFilms())
+        if ghibliFilms.isEmpty {
+            DispatchQueue.global(qos: .utility).async { [weak self] in
+                guard let self = self else { return }
+                switch self.networker!.getFilms() {
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                case .success(let success):
+                    self.ghibliFilms = success
+                }
+            }
         }
     }
 
@@ -49,23 +65,20 @@ class HomeCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int { 2 }
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { 20 }
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        ghibliFilms.count
+    }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        if indexPath.row % 2 == 0 {
-            cell.backgroundColor = .red
-        } else {
-            cell.backgroundColor = .accentColor
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FilmCellView else {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         }
+        cell.textLabel.text = ghibliFilms[indexPath.row].originalTitle
         return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath)
-        }
-        return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: footerReuseIdentifier, for: indexPath)
+        return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath)
     }
 
 }
@@ -85,69 +98,6 @@ extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
         }
         return .zero
     }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        if section == 1 {
-            return CGSize(width: view.frame.width, height: 50)
-        }
-        return .zero
-    }
-}
-
-class HeaderView: UICollectionReusableView {
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.addSubview(textLabel)
-        NSLayoutConstraint.activate([
-            textLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
-            textLabel.heightAnchor.constraint(equalToConstant: 30),
-            textLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            textLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16)
-        ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    lazy var textLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .label
-        label.text = "Ghibli Bibli"
-        label.font = .boldSystemFont(ofSize: 20)
-        return label
-    }()
-
-}
-
-class FooterView: UICollectionReusableView {
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.backgroundColor = .label
-        self.addSubview(textLabel)
-        NSLayoutConstraint.activate([
-            textLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
-            textLabel.heightAnchor.constraint(equalToConstant: 40),
-            textLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            textLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16)
-        ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    lazy var textLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemBackground
-        label.text = "Made by Kamaal"
-        return label
-    }()
-
 }
 
 #if DEBUG

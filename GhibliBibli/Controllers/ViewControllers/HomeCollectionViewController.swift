@@ -20,7 +20,7 @@ class HomeCollectionViewController: UICollectionViewController {
     convenience init(layout: UICollectionViewFlowLayout, preview: Bool = false) {
         self.init(collectionViewLayout: layout)
         self.preview = preview
-        self.networker = GhibliNet(preview: preview)
+        self.networker = GhibliNet()
     }
 
     override init(collectionViewLayout layout: UICollectionViewLayout) {
@@ -39,6 +39,10 @@ class HomeCollectionViewController: UICollectionViewController {
         self.collectionView.register(FooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerReuseIdentifier)
 
         self.collectionView.backgroundColor = .systemBackground
+
+        DispatchQueue.global(qos: .utility).async {
+            print(self.networker!.getFilms())
+        }
     }
 
     // MARK: UICollectionViewDataSource

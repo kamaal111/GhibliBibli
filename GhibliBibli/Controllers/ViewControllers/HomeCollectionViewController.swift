@@ -22,13 +22,14 @@ class HomeCollectionViewController: UICollectionViewController {
         }
     }
 
-    convenience init(layout: UICollectionViewFlowLayout) {
-        self.init(collectionViewLayout: layout)
+    override init(collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(collectionViewLayout: layout)
         self.networker = GhibliNet()
     }
 
-    override init(collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(collectionViewLayout: layout)
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.networker = GhibliNet()
     }
 
     required init?(coder: NSCoder) {
@@ -44,16 +45,14 @@ class HomeCollectionViewController: UICollectionViewController {
         self.title = "Ghibli Bibli"
         self.navigationController?.navigationBar.prefersLargeTitles = true
 
-        if ghibliFilms.isEmpty {
-            DispatchQueue.global(qos: .utility).async { [weak self] in
-                guard let self = self else { return }
-                guard let filmsResult = self.networker?.getFilms() else { return }
-                switch filmsResult {
-                case .failure(let failure):
-                    print(failure.localizedDescription)
-                case .success(let success):
-                    self.ghibliFilms = success
-                }
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let self = self else { return }
+            guard let filmsResult = self.networker?.getFilms() else { return }
+            switch filmsResult {
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            case .success(let success):
+                self.ghibliFilms = success
             }
         }
     }
@@ -84,7 +83,7 @@ extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        UIEdgeInsets(top: 15, left: 8, bottom: 15, right: 8)
     }
 }
 
@@ -98,9 +97,9 @@ private extension HomeCollectionViewController {
         }
         let cellWidth: CGFloat
         if UIDevice.current.userInterfaceIdiom == .phone {
-            cellWidth = (cellMaxWidth / 2) - 30
+            cellWidth = (cellMaxWidth / 2) - 16
         } else {
-            cellWidth = (cellMaxWidth / 4) - 30
+            cellWidth = (cellMaxWidth / 4) - 16
         }
         return cellWidth
     }
@@ -110,7 +109,7 @@ private extension HomeCollectionViewController {
 import SwiftUI
 struct HomeCollectionViewController_Previews: PreviewProvider {
     static var previews: some View {
-        UINavigationController(rootViewController: HomeCollectionViewController(layout: UICollectionViewFlowLayout()))
+        UINavigationController(rootViewController: HomeCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()))
             .toSwiftUIView()
             .edgesIgnoringSafeArea(.all)
     }

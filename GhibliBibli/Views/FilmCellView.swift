@@ -11,18 +11,12 @@ import GhibliNet
 class FilmCellView: UICollectionViewCell {
 
     private var film: GhibliFilm? {
-        didSet {
-            guard let film = film else { return }
-            filmImageView.image = film.uiImage
-            textLabel.text = film.title
-        }
+        didSet { populateViewWithFilm() }
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addSubview(textLabel)
-        self.addSubview(filmImageView)
-        setConstraints()
+        setupView()
     }
 
     required init?(coder: NSCoder) {
@@ -33,11 +27,19 @@ class FilmCellView: UICollectionViewCell {
         self.film = film
     }
 
-    private lazy var textLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .label
-        label.font = .boldSystemFont(ofSize: 13)
+        label.font = .preferredFont(forTextStyle: .body)
+        return label
+    }()
+
+    lazy var releaseYearLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .secondaryLabel
+        label.font = .preferredFont(forTextStyle: .subheadline)
         return label
     }()
 
@@ -49,6 +51,20 @@ class FilmCellView: UICollectionViewCell {
         return imageView
     }()
 
+    private func populateViewWithFilm() {
+        guard let film = film else { return }
+        filmImageView.image = film.uiImage
+        titleLabel.text = film.title
+        releaseYearLabel.text = "\(film.releaseDate)"
+    }
+
+    private func setupView() {
+        self.addSubview(titleLabel)
+        self.addSubview(filmImageView)
+        self.addSubview(releaseYearLabel)
+        setConstraints()
+    }
+
     private func setConstraints() {
         NSLayoutConstraint.activate([
             filmImageView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -56,9 +72,13 @@ class FilmCellView: UICollectionViewCell {
             filmImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             /// - TODO: Find a better solution for this 💩
             filmImageView.heightAnchor.constraint(equalToConstant: self.frame.height / 1.2),
-            textLabel.topAnchor.constraint(equalTo: filmImageView.bottomAnchor),
-            textLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            textLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+
+            titleLabel.topAnchor.constraint(equalTo: filmImageView.bottomAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+
+            releaseYearLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            releaseYearLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor)
         ])
     }
 

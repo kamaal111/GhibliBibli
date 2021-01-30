@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         let layout = UICollectionViewFlowLayout()
-        let homeCollectionViewController = HomeCollectionViewController(layout: layout)
+        let homeCollectionViewController = HomeCollectionViewController(collectionViewLayout: layout)
         window.rootViewController = UINavigationController(rootViewController: homeCollectionViewController)
         window.backgroundColor = .systemBackground
         self.window = window

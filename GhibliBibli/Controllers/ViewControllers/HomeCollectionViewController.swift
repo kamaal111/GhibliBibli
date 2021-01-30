@@ -8,11 +8,10 @@
 import UIKit
 import GhibliNet
 
-private let reuseIdentifier = "Cell"
+private let filmCellReuseIdentifier = "FilmCell"
 
 class HomeCollectionViewController: UICollectionViewController {
 
-    private var preview: Bool?
     private var networker: GhibliNet?
 
     var ghibliFilms: [GhibliFilm] = [] {
@@ -23,9 +22,8 @@ class HomeCollectionViewController: UICollectionViewController {
         }
     }
 
-    convenience init(layout: UICollectionViewFlowLayout, preview: Bool = false) {
+    convenience init(layout: UICollectionViewFlowLayout) {
         self.init(collectionViewLayout: layout)
-        self.preview = preview
         self.networker = GhibliNet()
     }
 
@@ -40,7 +38,7 @@ class HomeCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.collectionView.register(FilmCellView.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.register(FilmCellView.self, forCellWithReuseIdentifier: filmCellReuseIdentifier)
 
         self.collectionView.backgroundColor = .systemBackground
         self.title = "Ghibli Bibli"
@@ -62,29 +60,27 @@ class HomeCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int { 2 }
+    override func numberOfSections(in collectionView: UICollectionView) -> Int { 1 }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         ghibliFilms.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FilmCellView else {
-            return collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filmCellReuseIdentifier, for: indexPath) as! FilmCellView
         let ghibliFilm = ghibliFilms[indexPath.row]
-        cell.textLabel.text = ghibliFilm.originalTitle
-        if let imagePath = networker?.getImagePath(withName: ghibliFilm.imageUrl.path) {
-            cell.filmImageView.image = UIImage(contentsOfFile: imagePath)
-        }
+        cell.setFilm(ghibliFilm)
         return cell
     }
 
 }
 
+// MARK: UICollectionViewDelegateFlowLayout
+
 extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width - 30, height: 350)
+        let cellWidth = calcuateCellWidth(from: collectionView.frame.size)
+        return CGSize(width: cellWidth, height: cellWidth * 1.8)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -92,11 +88,30 @@ extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+private extension HomeCollectionViewController {
+    private func calcuateCellWidth(from size: CGSize) -> CGFloat {
+        let cellMaxWidth: CGFloat
+        if size.width > size.height {
+            cellMaxWidth = size.height
+        } else {
+            cellMaxWidth = size.width
+        }
+        let cellWidth: CGFloat
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            cellWidth = (cellMaxWidth / 2) - 30
+        } else {
+            cellWidth = (cellMaxWidth / 4) - 30
+        }
+        return cellWidth
+    }
+}
+
 #if DEBUG
 import SwiftUI
 struct HomeCollectionViewController_Previews: PreviewProvider {
     static var previews: some View {
-        UINavigationController(rootViewController: HomeCollectionViewController(layout: UICollectionViewFlowLayout(), preview: true)).toSwiftUIView()
+        UINavigationController(rootViewController: HomeCollectionViewController(layout: UICollectionViewFlowLayout()))
+            .toSwiftUIView()
             .edgesIgnoringSafeArea(.all)
     }
 }

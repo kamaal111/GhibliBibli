@@ -19,10 +19,6 @@ public struct GhibliNet {
         return films
     }
 
-    public func getImagePath(withName imageName: String) -> String? {
-        Bundle.module.path(forResource: imageName, ofType: nil)
-    }
-
     enum Errors: Error {
         case resourceNotFound
     }

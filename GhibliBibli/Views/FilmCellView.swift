@@ -6,29 +6,34 @@
 //
 
 import UIKit
+import GhibliNet
 
 class FilmCellView: UICollectionViewCell {
+
+    private var film: GhibliFilm? {
+        didSet {
+            guard let film = film else { return }
+            filmImageView.image = film.uiImage
+            textLabel.text = film.title
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(textLabel)
         self.addSubview(filmImageView)
-        NSLayoutConstraint.activate([
-            textLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
-            textLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            textLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            filmImageView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 16),
-            filmImageView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            filmImageView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            filmImageView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
-        ])
+        setConstraints()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    lazy var textLabel: UILabel = {
+    func setFilm(_ film: GhibliFilm) {
+        self.film = film
+    }
+
+    private lazy var textLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .label
@@ -36,11 +41,26 @@ class FilmCellView: UICollectionViewCell {
         return label
     }()
 
-    lazy var filmImageView: UIImageView = {
+    private lazy var filmImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleToFill
         return imageView
     }()
+
+    private func setConstraints() {
+        NSLayoutConstraint.activate([
+            filmImageView.topAnchor.constraint(equalTo: self.topAnchor),
+            filmImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            filmImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            /// - TODO: Find a better solution for this 💩
+            filmImageView.heightAnchor.constraint(equalToConstant: self.frame.height / 1.2),
+            textLabel.topAnchor.constraint(equalTo: filmImageView.bottomAnchor),
+            textLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            textLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
+    }
 
 }
 
@@ -49,7 +69,9 @@ import SwiftUI
 struct FilmCellView_Previews: PreviewProvider {
     static var previews: some View {
         let filmCell = FilmCellView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 200, height: 350)))
-        filmCell.textLabel.text = "Movie"
+        let networker = GhibliNet()
+        let ghibliFilm = try! networker.getFilms().get().randomElement()!
+        filmCell.setFilm(ghibliFilm)
         return filmCell.toSwiftUIView().previewLayout(.sizeThatFits)
     }
 }

@@ -5,7 +5,7 @@
 //  Created by Kamaal M Farah on 25/01/2021.
 //
 
-import Foundation
+import UIKit
 
 public struct GhibliFilm: Codable {
     public let id: UUID
@@ -72,5 +72,10 @@ public struct GhibliFilm: Codable {
         case locations
         case vehicles
         case imageUrl = "image_url"
+    }
+
+    public var uiImage: UIImage? {
+        guard let path = Bundle.module.path(forResource: imageUrl.path, ofType: nil) else { return nil }
+        return UIImage(contentsOfFile: path)
     }
 }

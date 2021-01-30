@@ -9,7 +9,6 @@ import UIKit
 import GhibliNet
 
 private let reuseIdentifier = "Cell"
-private let headerReuseIdentifier = "Header"
 
 class HomeCollectionViewController: UICollectionViewController {
 
@@ -42,16 +41,16 @@ class HomeCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
 
         self.collectionView.register(FilmCellView.self, forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView.register(HeaderView.self,
-                                     forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                     withReuseIdentifier: headerReuseIdentifier)
 
         self.collectionView.backgroundColor = .systemBackground
+        self.title = "Ghibli Bibli"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
 
         if ghibliFilms.isEmpty {
             DispatchQueue.global(qos: .utility).async { [weak self] in
                 guard let self = self else { return }
-                switch self.networker!.getFilms() {
+                guard let filmsResult = self.networker?.getFilms() else { return }
+                switch filmsResult {
                 case .failure(let failure):
                     print(failure.localizedDescription)
                 case .success(let success):
@@ -73,12 +72,12 @@ class HomeCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FilmCellView else {
             return collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         }
-        cell.textLabel.text = ghibliFilms[indexPath.row].originalTitle
+        let ghibliFilm = ghibliFilms[indexPath.row]
+        cell.textLabel.text = ghibliFilm.originalTitle
+        if let imagePath = networker?.getImagePath(withName: ghibliFilm.imageUrl.path) {
+            cell.filmImageView.image = UIImage(contentsOfFile: imagePath)
+        }
         return cell
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath)
     }
 
 }
@@ -90,13 +89,6 @@ extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if section == 0 {
-            return CGSize(width: view.frame.width, height: 80)
-        }
-        return .zero
     }
 }
 

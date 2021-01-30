@@ -9,20 +9,18 @@ import UIKit
 
 class FilmCellView: UICollectionViewCell {
 
-    var text: String?
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(textLabel)
-        self.addSubview(tempImageView)
+        self.addSubview(filmImageView)
         NSLayoutConstraint.activate([
             textLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
             textLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             textLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            tempImageView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 16),
-            tempImageView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            tempImageView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            tempImageView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
+            filmImageView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 16),
+            filmImageView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            filmImageView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            filmImageView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 
@@ -38,11 +36,10 @@ class FilmCellView: UICollectionViewCell {
         return label
     }()
 
-    lazy var tempImageView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .accentColor
-        return view
+    lazy var filmImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
 
 }

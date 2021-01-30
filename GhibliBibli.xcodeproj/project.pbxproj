@@ -15,6 +15,9 @@
 		2C60057B25BF75B6007C01B3 /* UIViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60057A25BF75B6007C01B3 /* UIViewController+extensions.swift */; };
 		2C88916A25BFF9D9006795FA /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88916925BFF9D9006795FA /* HomeCollectionViewController.swift */; };
 		2CCD0BAC25C5D5C500D2685F /* UIScreen+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0BAB25C5D5C500D2685F /* UIScreen+extensions.swift */; };
+		2CCD0BB425C60ECF00D2685F /* GhibliFilmsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0BB325C60ECF00D2685F /* GhibliFilmsModel.swift */; };
+		2CCD0BBA25C60F1100D2685F /* GhibliFilmsModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0BB925C60F1100D2685F /* GhibliFilmsModelController.swift */; };
+		2CCD0BC225C60F7300D2685F /* FilmDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0BC125C60F7300D2685F /* FilmDetailsViewController.swift */; };
 		2CD2A40225BEA90E0055E0DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A40125BEA90E0055E0DC /* AppDelegate.swift */; };
 		2CD2A40425BEA90E0055E0DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A40325BEA90E0055E0DC /* SceneDelegate.swift */; };
 		2CD2A40C25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A40A25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld */; };
@@ -52,6 +55,9 @@
 		2C60057A25BF75B6007C01B3 /* UIViewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extensions.swift"; sourceTree = "<group>"; };
 		2C88916925BFF9D9006795FA /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
 		2CCD0BAB25C5D5C500D2685F /* UIScreen+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+extensions.swift"; sourceTree = "<group>"; };
+		2CCD0BB325C60ECF00D2685F /* GhibliFilmsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhibliFilmsModel.swift; sourceTree = "<group>"; };
+		2CCD0BB925C60F1100D2685F /* GhibliFilmsModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhibliFilmsModelController.swift; sourceTree = "<group>"; };
+		2CCD0BC125C60F7300D2685F /* FilmDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsViewController.swift; sourceTree = "<group>"; };
 		2CD2A3FE25BEA90E0055E0DC /* GhibliBibli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GhibliBibli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD2A40125BEA90E0055E0DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CD2A40325BEA90E0055E0DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +145,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		2CCD0BB825C60EFF00D2685F /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2CCD0BB925C60F1100D2685F /* GhibliFilmsModelController.swift */,
+			);
+			path = ModelControllers;
+			sourceTree = "<group>";
+		};
 		2CD2A3F525BEA90E0055E0DC = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				2CD2A46325BEAD320055E0DC /* CoreData */,
+				2CCD0BB325C60ECF00D2685F /* GhibliFilmsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -230,6 +245,7 @@
 		2CD2A46425BEAD500055E0DC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2CCD0BB825C60EFF00D2685F /* ModelControllers */,
 				2CD2A46125BEAD1F0055E0DC /* Utilities */,
 				2CD2A46525BEAD5F0055E0DC /* ViewControllers */,
 			);
@@ -240,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				2C88916925BFF9D9006795FA /* HomeCollectionViewController.swift */,
+				2CCD0BC125C60F7300D2685F /* FilmDetailsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -408,11 +425,14 @@
 			files = (
 				2C03985F25C3EB6F004028ED /* UIColor+extensions.swift in Sources */,
 				2CD2A40C25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld in Sources */,
+				2CCD0BC225C60F7300D2685F /* FilmDetailsViewController.swift in Sources */,
 				2CD2A40225BEA90E0055E0DC /* AppDelegate.swift in Sources */,
 				2CD2A40425BEA90E0055E0DC /* SceneDelegate.swift in Sources */,
 				2C88916A25BFF9D9006795FA /* HomeCollectionViewController.swift in Sources */,
 				2C60057B25BF75B6007C01B3 /* UIViewController+extensions.swift in Sources */,
 				2C11D45125C4B571004F5462 /* UIView+extensions.swift in Sources */,
+				2CCD0BB425C60ECF00D2685F /* GhibliFilmsModel.swift in Sources */,
+				2CCD0BBA25C60F1100D2685F /* GhibliFilmsModelController.swift in Sources */,
 				2CD2A44A25BEAACC0055E0DC /* PersistenceController.swift in Sources */,
 				2C11D44C25C4B4D7004F5462 /* FilmCellView.swift in Sources */,
 				2CCD0BAC25C5D5C500D2685F /* UIScreen+extensions.swift in Sources */,

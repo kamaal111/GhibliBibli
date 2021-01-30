@@ -12,24 +12,15 @@ private let filmCellReuseIdentifier = "FilmCell"
 
 class HomeCollectionViewController: UICollectionViewController {
 
-    private var networker: GhibliNet?
-
-    var ghibliFilms: [GhibliFilm] = [] {
-        didSet {
-            DispatchQueue.main.async { [weak self] in
-                self?.collectionView.reloadData()
-            }
-        }
-    }
+    private var networker = GhibliNet()
+    private var ghibliFilmsModelController = GhibliFilmsModelController()
 
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
-        self.networker = GhibliNet()
     }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.networker = GhibliNet()
     }
 
     required init?(coder: NSCoder) {
@@ -38,7 +29,6 @@ class HomeCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.collectionView.register(FilmCellView.self, forCellWithReuseIdentifier: filmCellReuseIdentifier)
 
         self.collectionView.backgroundColor = .systemBackground
@@ -47,12 +37,14 @@ class HomeCollectionViewController: UICollectionViewController {
 
         DispatchQueue.global(qos: .utility).async { [weak self] in
             guard let self = self else { return }
-            guard let filmsResult = self.networker?.getFilms() else { return }
-            switch filmsResult {
+            switch self.networker.getFilms() {
             case .failure(let failure):
                 print(failure.localizedDescription)
             case .success(let success):
-                self.ghibliFilms = success
+                self.ghibliFilmsModelController.setFilms(with: success)
+                DispatchQueue.main.async { [weak self] in
+                    self?.collectionView.reloadData()
+                }
             }
         }
     }
@@ -62,14 +54,22 @@ class HomeCollectionViewController: UICollectionViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int { 1 }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        ghibliFilms.count
+        ghibliFilmsModelController.ghibliFilms.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filmCellReuseIdentifier, for: indexPath) as! FilmCellView
-        let ghibliFilm = ghibliFilms[indexPath.row]
+        let ghibliFilm = ghibliFilmsModelController.ghibliFilms[indexPath.row]
         cell.setFilm(ghibliFilm)
         return cell
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let filmDetailsViewController = FilmDetailsViewController()
+        let ghibliFilm = ghibliFilmsModelController.ghibliFilms[indexPath.row]
+        filmDetailsViewController.ghibliFilm = ghibliFilm
+        self.navigationController?.pushViewController(filmDetailsViewController, animated: true)
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
 
 }

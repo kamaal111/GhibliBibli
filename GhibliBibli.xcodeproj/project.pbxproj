@@ -414,7 +414,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\npython3 Scripts/GenerateData/app.py -o=Packages/GhibliNet/Sources/GhibliNet/Resources/Data\n";
+			shellScript = "\n# python3 Scripts/GenerateData/app.py -o=Packages/GhibliNet/Sources/GhibliNet/Resources/Data\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

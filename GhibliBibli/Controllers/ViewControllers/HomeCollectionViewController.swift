@@ -49,6 +49,23 @@ class HomeCollectionViewController: UICollectionViewController {
         }
     }
 
+    #if DEBUG
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            let actionSheet = UIAlertController(title: "Secret Sheet", message: nil, preferredStyle: .actionSheet)
+            let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { (_: UIAlertAction) in }
+            actionSheet.addAction(cancelActionButton)
+            let playgroundActionButton = UIAlertAction(title: "Playground", style: .default) { (_: UIAlertAction) in
+                let playgroundScreen = Playground()
+                let hostingController = UIHostingController(rootView: playgroundScreen)
+                self.navigationController?.pushViewController(hostingController, animated: true)
+            }
+            actionSheet.addAction(playgroundActionButton)
+            self.present(actionSheet, animated: true)
+        }
+    }
+    #endif
+
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int { 1 }

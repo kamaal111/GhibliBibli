@@ -11,6 +11,8 @@
 		2C11D44725C4AE3D004F5462 /* ShrimpExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 2C11D44625C4AE3D004F5462 /* ShrimpExtensions */; };
 		2C11D44C25C4B4D7004F5462 /* FilmCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C11D44B25C4B4D7004F5462 /* FilmCellView.swift */; };
 		2C11D45125C4B571004F5462 /* UIView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C11D45025C4B571004F5462 /* UIView+extensions.swift */; };
+		2C36334825C7DFFE00D9BCA4 /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36334725C7DFFE00D9BCA4 /* Playground.swift */; };
+		2C36334E25C7E51100D9BCA4 /* FilmDetailPlayground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36334D25C7E51100D9BCA4 /* FilmDetailPlayground.swift */; };
 		2C49035A25BF39240099A74D /* GhibliNet in Frameworks */ = {isa = PBXBuildFile; productRef = 2C49035925BF39240099A74D /* GhibliNet */; };
 		2C60057B25BF75B6007C01B3 /* UIViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60057A25BF75B6007C01B3 /* UIViewController+extensions.swift */; };
 		2C88916A25BFF9D9006795FA /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88916925BFF9D9006795FA /* HomeCollectionViewController.swift */; };
@@ -51,6 +53,8 @@
 		2C03985E25C3EB6F004028ED /* UIColor+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+extensions.swift"; sourceTree = "<group>"; };
 		2C11D44B25C4B4D7004F5462 /* FilmCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCellView.swift; sourceTree = "<group>"; };
 		2C11D45025C4B571004F5462 /* UIView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extensions.swift"; sourceTree = "<group>"; };
+		2C36334725C7DFFE00D9BCA4 /* Playground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playground.swift; sourceTree = "<group>"; };
+		2C36334D25C7E51100D9BCA4 /* FilmDetailPlayground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailPlayground.swift; sourceTree = "<group>"; };
 		2C500E9325BEAE330011F06B /* GhibliNet */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GhibliNet; sourceTree = "<group>"; };
 		2C60057A25BF75B6007C01B3 /* UIViewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extensions.swift"; sourceTree = "<group>"; };
 		2C88916925BFF9D9006795FA /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +123,23 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		2C36334625C7DFBF00D9BCA4 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				2C36334C25C7E4F100D9BCA4 /* PrototypeScreens */,
+				2C36334725C7DFFE00D9BCA4 /* Playground.swift */,
+			);
+			path = Playgrounds;
+			sourceTree = "<group>";
+		};
+		2C36334C25C7E4F100D9BCA4 /* PrototypeScreens */ = {
+			isa = PBXGroup;
+			children = (
+				2C36334D25C7E51100D9BCA4 /* FilmDetailPlayground.swift */,
+			);
+			path = PrototypeScreens;
+			sourceTree = "<group>";
+		};
 		2C49035825BF39240099A74D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +177,7 @@
 		2CD2A3F525BEA90E0055E0DC = {
 			isa = PBXGroup;
 			children = (
+				2C36334625C7DFBF00D9BCA4 /* Playgrounds */,
 				2C500E9225BEAE000011F06B /* Packages */,
 				2CD2A45425BEAC900055E0DC /* Tests */,
 				2CD2A40025BEA90E0055E0DC /* GhibliBibli */,
@@ -427,9 +449,11 @@
 				2CD2A40C25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld in Sources */,
 				2CCD0BC225C60F7300D2685F /* FilmDetailsViewController.swift in Sources */,
 				2CD2A40225BEA90E0055E0DC /* AppDelegate.swift in Sources */,
+				2C36334825C7DFFE00D9BCA4 /* Playground.swift in Sources */,
 				2CD2A40425BEA90E0055E0DC /* SceneDelegate.swift in Sources */,
 				2C88916A25BFF9D9006795FA /* HomeCollectionViewController.swift in Sources */,
 				2C60057B25BF75B6007C01B3 /* UIViewController+extensions.swift in Sources */,
+				2C36334E25C7E51100D9BCA4 /* FilmDetailPlayground.swift in Sources */,
 				2C11D45125C4B571004F5462 /* UIView+extensions.swift in Sources */,
 				2CCD0BB425C60ECF00D2685F /* GhibliFilmsModel.swift in Sources */,
 				2CCD0BBA25C60F1100D2685F /* GhibliFilmsModelController.swift in Sources */,
@@ -606,7 +630,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DXUKH9VF73;
 				INFOPLIST_FILE = GhibliBibli/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -626,7 +650,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DXUKH9VF73;
 				INFOPLIST_FILE = GhibliBibli/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

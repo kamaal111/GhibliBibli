@@ -12,6 +12,8 @@ class FilmDetailsViewController: UIViewController {
 
     var ghibliFilm: GhibliFilm?
 
+    private let networker = GhibliNet()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,13 +69,22 @@ class FilmDetailsViewController: UIViewController {
 
     private func setupView() {
         self.view.backgroundColor = .systemBackground
-        self.title = ghibliFilm?.title
         self.navigationItem.largeTitleDisplayMode = .never
         self.view.addSubview(filmImageView)
         self.view.addSubview(filmTitleLabel)
         self.view.addSubview(releaseYearLabel)
         self.view.addSubview(originalTitleLabel)
         setupConstraints()
+        if let ghibliFilm = ghibliFilm {
+            self.title = ghibliFilm.title
+
+            switch networker.getFilmPeople(of: ghibliFilm) {
+            case .failure(let failure):
+                print(failure)
+            case .success(let success):
+                print(success)
+            }
+        }
     }
 
     private func setupConstraints() {

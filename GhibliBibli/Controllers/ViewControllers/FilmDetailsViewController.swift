@@ -80,6 +80,11 @@ class FilmDetailsViewController: UIViewController {
         }
     }
 
+    @objc
+    func firstPersonButtonAction(_ sender: UIButton) {
+        print(sender.subviews)
+    }
+
     private func filmPeopleDidSet() {
         guard !filmPeople.isEmpty else { return }
         let charactersTitle = UILabel()
@@ -90,18 +95,25 @@ class FilmDetailsViewController: UIViewController {
         self.view.addSubview(charactersTitle)
 
         let firstPerson = filmPeople.first!
-        let firstLabel = UILabel()
-        firstLabel.translatesAutoresizingMaskIntoConstraints = false
-        firstLabel.text = firstPerson.name
-        firstLabel.textColor = .label
-        firstLabel.font = .preferredFont(forTextStyle: .body)
-        self.view.addSubview(firstLabel)
+        let firstPersonButton = UIButton(type: .system)
+        firstPersonButton.translatesAutoresizingMaskIntoConstraints = false
+        firstPersonButton.setTitle(firstPerson.name, for: .normal)
+        firstPersonButton.setTitleColor(.label, for: .normal)
+        firstPersonButton.titleLabel?.font = .preferredFont(forTextStyle: .body)
+        firstPersonButton.addTarget(self, action: #selector(firstPersonButtonAction), for: .touchUpInside)
+        let chevronRightImage = UIImage(systemName: "chevron.right")
+        firstPersonButton.setImage(chevronRightImage, for: .normal)
+        firstPersonButton.semanticContentAttribute = .forceRightToLeft
+        firstPersonButton.titleEdgeInsets.right = self.view.frame.width / 2
+        firstPersonButton.imageEdgeInsets.right = -(self.view.frame.width / 2)
+        self.view.addSubview(firstPersonButton)
 
         NSLayoutConstraint.activate([
             charactersTitle.topAnchor.constraint(equalTo: filmImageView.bottomAnchor, constant: 16),
             charactersTitle.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            firstLabel.topAnchor.constraint(equalTo: charactersTitle.bottomAnchor, constant: 4),
-            firstLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            firstPersonButton.topAnchor.constraint(equalTo: charactersTitle.bottomAnchor, constant: 4),
+            firstPersonButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            firstPersonButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
         ])
 
         let peopleLabels: [UILabel] = filmPeople[1..<filmPeople.count].map {
@@ -116,7 +128,7 @@ class FilmDetailsViewController: UIViewController {
         for (index, personLabel) in peopleLabels.enumerated() {
             self.view.addSubview(personLabel)
             if index == 0 {
-                personLabel.topAnchor.constraint(equalTo: firstLabel.bottomAnchor, constant: 8).isActive = true
+                personLabel.topAnchor.constraint(equalTo: firstPersonButton.bottomAnchor, constant: 8).isActive = true
             } else {
                 personLabel.topAnchor.constraint(equalTo: peopleLabels[index - 1].bottomAnchor, constant: 8).isActive = true
             }

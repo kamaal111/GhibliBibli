@@ -16,35 +16,49 @@ struct FilmDetailPlayground: View {
     private let networker = NetworkController.shared
 
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack(alignment: .top) {
-                if ghibliFilm?.uiImage != nil {
-                    Image(uiImage: ghibliFilm!.uiImage!)
-                        .resizable()
-                        .frame(width: UIScreen.main.narrowestEdge / 2.5, height: UIScreen.main.widestEdge / 2.5)
-                        .shadow(color: Color.accentColor.opacity(0.6), radius: 4, x: 4, y: 4)
+        ScrollView(.vertical, showsIndicators: true) {
+            VStack(alignment: .leading) {
+                HStack(alignment: .top) {
+                    if ghibliFilm?.uiImage != nil {
+                        Image(uiImage: ghibliFilm!.uiImage!)
+                            .resizable()
+                            .frame(width: UIScreen.main.narrowestEdge / 2.5, height: UIScreen.main.widestEdge / 2.5)
+                            .shadow(color: Color.accentColor.opacity(0.6), radius: 4, x: 4, y: 4)
+                    }
+                    VStack(alignment: .leading) {
+                        Text(ghibliFilm?.title ?? "")
+                            .font(.title3)
+                        Text(releaseYearText)
+                            .foregroundColor(.secondary)
+                        Text(ghibliFilm?.originalTitle ?? "")
+                            .font(.headline)
+                    }
+                    .padding(.horizontal, 16)
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
                 }
                 VStack(alignment: .leading) {
-                    Text(ghibliFilm?.title ?? "")
-                        .font(.title3)
-                    Text(releaseYearText)
-                        .foregroundColor(.secondary)
-                    Text(ghibliFilm?.originalTitle ?? "")
+                    Text("Characters")
                         .font(.headline)
+                        .foregroundColor(.secondary)
+                        .padding(.bottom, 4)
+                    ForEach(ghibliPeople) { (person: GhibliPeople) in
+                        NavigationLink(destination: Text(person.name)) {
+                            HStack {
+                                Text(person.name)
+                                    .foregroundColor(.primary)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.accentColor)
+                            }
+                        }
+                        .padding(.vertical, 1)
+                    }
                 }
-                .padding(.horizontal, 16)
-                .frame(maxWidth: .infinity, alignment: .topLeading)
+                .padding(.vertical, 16)
             }
-            VStack(alignment: .leading) {
-                ForEach(ghibliPeople) { person in
-                    Text(person.name)
-                }
-            }
-            .padding(.vertical, 16)
+            .padding(.vertical, 24)
+            .padding(.horizontal, 16)
         }
-        .padding(.vertical, 24)
-        .padding(.horizontal, 16)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .navigationBarTitle(Text(ghibliFilm?.title ?? ""), displayMode: .inline)
         .onAppear(perform: {
             if let ghibliFilm = ghibliFilm {

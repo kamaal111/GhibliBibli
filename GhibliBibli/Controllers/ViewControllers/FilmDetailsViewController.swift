@@ -11,12 +11,14 @@ import GhibliNet
 class FilmDetailsViewController: UIViewController {
 
     var ghibliFilm: GhibliFilm?
+    var filmPeople: [GhibliPeople] = [] {
+        didSet { filmPeopleDidSet() }
+    }
 
     private let networker = NetworkController.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
     }
 
@@ -67,24 +69,73 @@ class FilmDetailsViewController: UIViewController {
         return label
     }()
 
-    private func setupView() {
-        self.view.backgroundColor = .systemBackground
-        self.navigationItem.largeTitleDisplayMode = .never
-        self.view.addSubview(filmImageView)
-        self.view.addSubview(filmTitleLabel)
-        self.view.addSubview(releaseYearLabel)
-        self.view.addSubview(originalTitleLabel)
-        setupConstraints()
+    private func processGhibliFilm() {
         if let ghibliFilm = ghibliFilm {
-            self.title = ghibliFilm.title
-
             switch networker.ghibli.getFilmPeople(of: ghibliFilm) {
             case .failure(let failure):
                 print(failure)
             case .success(let success):
-                print(success)
+                filmPeople = success
             }
         }
+    }
+
+    private func filmPeopleDidSet() {
+        guard !filmPeople.isEmpty else { return }
+        let charactersTitle = UILabel()
+        charactersTitle.font = .preferredFont(forTextStyle: .headline)
+        charactersTitle.textColor = .secondaryLabel
+        charactersTitle.text = "Characters"
+        charactersTitle.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(charactersTitle)
+
+        let firstPerson = filmPeople.first!
+        let firstLabel = UILabel()
+        firstLabel.translatesAutoresizingMaskIntoConstraints = false
+        firstLabel.text = firstPerson.name
+        firstLabel.textColor = .label
+        firstLabel.font = .preferredFont(forTextStyle: .body)
+        self.view.addSubview(firstLabel)
+
+        NSLayoutConstraint.activate([
+            charactersTitle.topAnchor.constraint(equalTo: filmImageView.bottomAnchor, constant: 16),
+            charactersTitle.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            firstLabel.topAnchor.constraint(equalTo: charactersTitle.bottomAnchor, constant: 4),
+            firstLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+        ])
+
+        let peopleLabels: [UILabel] = filmPeople[1..<filmPeople.count].map {
+            let personLabel = UILabel()
+            personLabel.translatesAutoresizingMaskIntoConstraints = false
+            personLabel.text = $0.name
+            personLabel.textColor = .label
+            personLabel.font = .preferredFont(forTextStyle: .body)
+            return personLabel
+        }
+
+        for (index, personLabel) in peopleLabels.enumerated() {
+            self.view.addSubview(personLabel)
+            if index == 0 {
+                personLabel.topAnchor.constraint(equalTo: firstLabel.bottomAnchor, constant: 8).isActive = true
+            } else {
+                personLabel.topAnchor.constraint(equalTo: peopleLabels[index - 1].bottomAnchor, constant: 8).isActive = true
+            }
+            personLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
+        }
+    }
+
+    private func setupView() {
+        self.view.backgroundColor = .systemBackground
+        self.navigationItem.largeTitleDisplayMode = .never
+        self.title = ghibliFilm?.title
+
+        self.view.addSubview(filmImageView)
+        self.view.addSubview(filmTitleLabel)
+        self.view.addSubview(releaseYearLabel)
+        self.view.addSubview(originalTitleLabel)
+
+        setupConstraints()
+        processGhibliFilm()
     }
 
     private func setupConstraints() {
@@ -110,14 +161,12 @@ import SwiftUI
 struct FilmDetailsViewController_Previews: PreviewProvider {
     static var previews: some View {
         let filmDetailViewController = FilmDetailsViewController()
-        let ghibliFilm = try? GhibliNet().getFilms().get().first
+        let ghibliFilm = try? NetworkController.shared.ghibli.getFilms().get().first { !$0.people.isEmpty }
         filmDetailViewController.ghibliFilm = ghibliFilm
-        return Group {
-            UINavigationController(rootViewController: filmDetailViewController)
+        return UINavigationController(rootViewController: filmDetailViewController)
                 .toSwiftUIView()
                 .edgesIgnoringSafeArea(.all)
                 .colorScheme(.dark)
-        }
     }
 }
 #endif

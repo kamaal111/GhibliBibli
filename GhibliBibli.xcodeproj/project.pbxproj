@@ -30,6 +30,7 @@
 		2CD2A44525BEAA540055E0DC /* PersistanceManager in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD2A44425BEAA540055E0DC /* PersistanceManager */; };
 		2CD2A44A25BEAACC0055E0DC /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A44925BEAACC0055E0DC /* PersistenceController.swift */; };
 		2CD2A45025BEAB2D0055E0DC /* ConsoleSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD2A44F25BEAB2D0055E0DC /* ConsoleSwift */; };
+		2CD7F90125C9309C0085B98F /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7F90025C9309C0085B98F /* NetworkController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		2CD2A42625BEA9120055E0DC /* GhibliBibliUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhibliBibliUITests.swift; sourceTree = "<group>"; };
 		2CD2A42825BEA9120055E0DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CD2A44925BEAACC0055E0DC /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		2CD7F90025C9309C0085B98F /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				2CD2A44925BEAACC0055E0DC /* PersistenceController.swift */,
+				2CD7F90025C9309C0085B98F /* NetworkController.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CD7F90125C9309C0085B98F /* NetworkController.swift in Sources */,
 				2C03985F25C3EB6F004028ED /* UIColor+extensions.swift in Sources */,
 				2CD2A40C25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld in Sources */,
 				2CCD0BC225C60F7300D2685F /* FilmDetailsViewController.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-public struct GhibliFilm: Codable {
+public struct GhibliFilm: Codable, Hashable, Identifiable {
     public let id: UUID
     public let title: String
     public let originalTitle: String

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct GhibliPeople: Codable {
+public struct GhibliPeople: Codable, Hashable, Identifiable {
     public let id: UUID
     public let name: String
     public let gender: String
@@ -46,7 +46,7 @@ public struct GhibliPeople: Codable {
         case age
     }
 
-    public struct HexColorName: Codable {
+    public struct HexColorName: Codable, Hashable {
         public let name: String
         public let hex: String?
 

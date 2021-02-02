@@ -12,7 +12,7 @@ class FilmDetailsViewController: UIViewController {
 
     var ghibliFilm: GhibliFilm?
 
-    private let networker = GhibliNet()
+    private let networker = NetworkController.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +78,7 @@ class FilmDetailsViewController: UIViewController {
         if let ghibliFilm = ghibliFilm {
             self.title = ghibliFilm.title
 
-            switch networker.getFilmPeople(of: ghibliFilm) {
+            switch networker.ghibli.getFilmPeople(of: ghibliFilm) {
             case .failure(let failure):
                 print(failure)
             case .success(let success):

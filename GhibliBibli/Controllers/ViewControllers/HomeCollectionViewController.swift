@@ -12,7 +12,7 @@ private let filmCellReuseIdentifier = "FilmCell"
 
 class HomeCollectionViewController: UICollectionViewController {
 
-    private var networker = GhibliNet()
+    private var networker = NetworkController.shared
     private var ghibliFilmsModelController = GhibliFilmsModelController()
 
     override init(collectionViewLayout layout: UICollectionViewLayout) {
@@ -37,7 +37,7 @@ class HomeCollectionViewController: UICollectionViewController {
 
         DispatchQueue.global(qos: .utility).async { [weak self] in
             guard let self = self else { return }
-            switch self.networker.getFilms() {
+            switch self.networker.ghibli.getFilms() {
             case .failure(let failure):
                 print(failure.localizedDescription)
             case .success(let success):

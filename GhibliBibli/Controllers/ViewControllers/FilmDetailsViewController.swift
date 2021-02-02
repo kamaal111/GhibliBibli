@@ -82,7 +82,9 @@ class FilmDetailsViewController: UIViewController {
 
     @objc
     func personButtonAction(_ sender: UIButton) {
-        print(sender.tag)
+        let characterDetailViewController = CharacterDetailViewController()
+        characterDetailViewController.character = filmPeople[sender.tag]
+        self.navigationController?.pushViewController(characterDetailViewController, animated: true)
     }
 
     private func filmPeopleDidSet() {

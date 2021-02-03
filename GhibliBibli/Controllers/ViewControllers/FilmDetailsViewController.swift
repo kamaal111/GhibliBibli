@@ -11,7 +11,8 @@ import GhibliNet
 class FilmDetailsViewController: UIViewController {
 
     var ghibliFilm: GhibliFilm?
-    var filmPeople: [GhibliPeople] = [] {
+
+    private var filmPeople: [GhibliPeople] = [] {
         didSet { filmPeopleDidSet() }
     }
 
@@ -69,6 +70,22 @@ class FilmDetailsViewController: UIViewController {
         return label
     }()
 
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        view.frame.size = self.view.frame.size
+        return view
+    }()
+
+    private lazy var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.backgroundColor = .systemBackground
+        /// - TODO: Make the scrollview height dynamic, by calculating sub view heights 😭
+        scroll.contentSize = self.view.frame.size
+        return scroll
+    }()
+
     private func processGhibliFilm() {
         if let ghibliFilm = ghibliFilm {
             switch networker.ghibli.getFilmPeople(of: ghibliFilm) {
@@ -109,16 +126,16 @@ class FilmDetailsViewController: UIViewController {
         firstPersonButton.setImage(chevronRightImage, for: .normal)
         let chevronRightImageWidth = chevronRightImage?.size.width ?? 0
         firstPersonButton.titleEdgeInsets.left = -chevronRightImageWidth
-        firstPersonButton.imageEdgeInsets.left = self.view.frame.width - chevronRightImageWidth - 32
-        firstPersonButton.contentEdgeInsets.right = -self.view.frame.width
+        firstPersonButton.imageEdgeInsets.left = containerView.frame.width - chevronRightImageWidth - 32
+        firstPersonButton.contentEdgeInsets.right = -containerView.frame.width
         self.view.addSubview(firstPersonButton)
 
         NSLayoutConstraint.activate([
             charactersTitle.topAnchor.constraint(equalTo: filmImageView.bottomAnchor, constant: 16),
-            charactersTitle.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            charactersTitle.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             firstPersonButton.topAnchor.constraint(equalTo: charactersTitle.bottomAnchor, constant: 4),
-            firstPersonButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            firstPersonButton.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor, constant: -32)
+            firstPersonButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            firstPersonButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, constant: -32)
         ])
 
         let peopleButtons: [UIButton] = filmPeople[1..<filmPeople.count]
@@ -136,33 +153,37 @@ class FilmDetailsViewController: UIViewController {
                 button.setImage(chevronRightImage, for: .normal)
                 let chevronRightImageWidth = chevronRightImage?.size.width ?? 0
                 button.titleEdgeInsets.left = -chevronRightImageWidth
-                button.imageEdgeInsets.left = self.view.frame.width - chevronRightImageWidth - 32
-                button.contentEdgeInsets.right = -self.view.frame.width
+                button.imageEdgeInsets.left = containerView.frame.width - chevronRightImageWidth - 32
+                button.contentEdgeInsets.right = -containerView.frame.width
                 return button
             }
 
         for (index, personButton) in peopleButtons.enumerated() {
-            self.view.addSubview(personButton)
+            containerView.addSubview(personButton)
             let topPadding: CGFloat = 8
             if index == 0 {
                 personButton.topAnchor.constraint(equalTo: firstPersonButton.bottomAnchor, constant: topPadding).isActive = true
             } else {
                 personButton.topAnchor.constraint(equalTo: peopleButtons[index - 1].bottomAnchor, constant: topPadding).isActive = true
             }
-            personButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
-            personButton.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor, constant: -32).isActive = true
+            personButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16).isActive = true
+            personButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, constant: -32).isActive = true
         }
     }
 
     private func setupView() {
-        self.view.backgroundColor = .systemBackground
         self.navigationItem.largeTitleDisplayMode = .never
         self.title = ghibliFilm?.title
+        self.view.backgroundColor = .systemBackground
 
-        self.view.addSubview(filmImageView)
-        self.view.addSubview(filmTitleLabel)
-        self.view.addSubview(releaseYearLabel)
-        self.view.addSubview(originalTitleLabel)
+        self.view.addSubview(scrollView)
+
+        scrollView.addSubview(containerView)
+
+        containerView.addSubview(filmImageView)
+        containerView.addSubview(filmTitleLabel)
+        containerView.addSubview(releaseYearLabel)
+        containerView.addSubview(originalTitleLabel)
 
         setupConstraints()
         processGhibliFilm()
@@ -170,15 +191,23 @@ class FilmDetailsViewController: UIViewController {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            filmImageView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 24),
-            filmImageView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+
+            filmImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 24),
+            filmImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             filmImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.widestEdge / 2.5),
             filmImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.narrowestEdge / 2.5),
+
             filmTitleLabel.leadingAnchor.constraint(equalTo: filmImageView.trailingAnchor, constant: 16),
-            filmTitleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 24),
-            filmTitleLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            filmTitleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 24),
+            filmTitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+
             releaseYearLabel.topAnchor.constraint(equalTo: filmTitleLabel.bottomAnchor, constant: 8),
             releaseYearLabel.leadingAnchor.constraint(equalTo: filmImageView.trailingAnchor, constant: 16),
+
             originalTitleLabel.leadingAnchor.constraint(equalTo: filmImageView.trailingAnchor, constant: 16),
             originalTitleLabel.topAnchor.constraint(equalTo: releaseYearLabel.bottomAnchor, constant: 8)
         ])

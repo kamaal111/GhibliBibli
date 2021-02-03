@@ -101,16 +101,24 @@ class FilmDetailsViewController: UIViewController {
         firstPersonButton.tag = 0
         firstPersonButton.translatesAutoresizingMaskIntoConstraints = false
         firstPersonButton.setTitle(firstPerson.name, for: .normal)
-        firstPersonButton.setTitleColor(.accentColor, for: .normal)
+        firstPersonButton.setTitleColor(.label, for: .normal)
         firstPersonButton.titleLabel?.font = .preferredFont(forTextStyle: .body)
         firstPersonButton.addTarget(self, action: #selector(personButtonAction), for: .touchUpInside)
+        firstPersonButton.contentHorizontalAlignment = .leading
+        let chevronRightImage = UIImage(systemName: "chevron.right")
+        firstPersonButton.setImage(chevronRightImage, for: .normal)
+        let chevronRightImageWidth = chevronRightImage?.size.width ?? 0
+        firstPersonButton.titleEdgeInsets.left = -chevronRightImageWidth
+        firstPersonButton.imageEdgeInsets.left = self.view.frame.width - chevronRightImageWidth - 32
+        firstPersonButton.contentEdgeInsets.right = -self.view.frame.width
         self.view.addSubview(firstPersonButton)
 
         NSLayoutConstraint.activate([
             charactersTitle.topAnchor.constraint(equalTo: filmImageView.bottomAnchor, constant: 16),
             charactersTitle.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             firstPersonButton.topAnchor.constraint(equalTo: charactersTitle.bottomAnchor, constant: 4),
-            firstPersonButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16)
+            firstPersonButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            firstPersonButton.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor, constant: -32)
         ])
 
         let peopleButtons: [UIButton] = filmPeople[1..<filmPeople.count]
@@ -120,20 +128,29 @@ class FilmDetailsViewController: UIViewController {
                 button.translatesAutoresizingMaskIntoConstraints = false
                 button.tag = enumarated.offset + 1
                 button.setTitle(enumarated.element.name, for: .normal)
-                button.setTitleColor(.accentColor, for: .normal)
+                button.setTitleColor(.label, for: .normal)
                 button.titleLabel?.font = .preferredFont(forTextStyle: .body)
                 button.addTarget(self, action: #selector(personButtonAction), for: .touchUpInside)
+                button.contentHorizontalAlignment = .leading
+                let chevronRightImage = UIImage(systemName: "chevron.right")
+                button.setImage(chevronRightImage, for: .normal)
+                let chevronRightImageWidth = chevronRightImage?.size.width ?? 0
+                button.titleEdgeInsets.left = -chevronRightImageWidth
+                button.imageEdgeInsets.left = self.view.frame.width - chevronRightImageWidth - 32
+                button.contentEdgeInsets.right = -self.view.frame.width
                 return button
             }
 
         for (index, personButton) in peopleButtons.enumerated() {
             self.view.addSubview(personButton)
+            let topPadding: CGFloat = 8
             if index == 0 {
-                personButton.topAnchor.constraint(equalTo: firstPersonButton.bottomAnchor, constant: 1).isActive = true
+                personButton.topAnchor.constraint(equalTo: firstPersonButton.bottomAnchor, constant: topPadding).isActive = true
             } else {
-                personButton.topAnchor.constraint(equalTo: peopleButtons[index - 1].bottomAnchor, constant: 1).isActive = true
+                personButton.topAnchor.constraint(equalTo: peopleButtons[index - 1].bottomAnchor, constant: topPadding).isActive = true
             }
             personButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
+            personButton.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor, constant: -32).isActive = true
         }
     }
 

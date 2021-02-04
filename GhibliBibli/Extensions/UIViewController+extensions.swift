@@ -5,9 +5,23 @@
 //  Created by Kamaal M Farah on 25/01/2021.
 //
 
-import SwiftUI
+import UIKit
 
 extension UIViewController {
+    func add(_ child: UIViewController) {
+        self.addChild(child)
+        self.view.addSubview(child.view)
+        child.didMove(toParent: self)
+    }
+}
+
+#if DEBUG
+import SwiftUI
+extension UIViewController {
+    func toSwiftUIView() -> some View {
+        Preview(viewController: self)
+    }
+
     private struct Preview: UIViewControllerRepresentable {
         let viewController: UIViewController
 
@@ -17,8 +31,5 @@ extension UIViewController {
 
         func updateUIViewController(_ uiViewController: UIViewController, context: Context) { }
     }
-
-    func toSwiftUIView() -> some View {
-        Preview(viewController: self)
-    }
 }
+#endif

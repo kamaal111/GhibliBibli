@@ -24,27 +24,14 @@ class FilmDetailsViewController: UIViewController {
     }
 
     private lazy var filmImageView: UIImageView = {
-        let imageView = UIImageView()
+        let imageView = UIImageView.filmImageView(image: ghibliFilm?.uiImage)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.masksToBounds = true
-        imageView.contentMode = .scaleToFill
-        imageView.layer.shadowColor = UIColor.accentColor.cgColor
-        imageView.layer.shadowOffset = CGSize(width: 4, height: 4)
-        imageView.layer.shadowOpacity = 0.6
-        imageView.layer.shadowRadius = 4
-        imageView.clipsToBounds = false
-        imageView.image = ghibliFilm?.uiImage
         return imageView
     }()
 
     private lazy var filmTitleLabel: UILabel = {
-        let label = UILabel()
+        let label = UILabel.filmTitleLabel(title: ghibliFilm?.title)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .label
-        label.text = ghibliFilm?.title
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 3
-        label.font = .preferredFont(forTextStyle: .title3)
         return label
     }()
 
@@ -52,7 +39,7 @@ class FilmDetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .secondaryLabel
-        label.font = .preferredFont(forTextStyle: .body)
+        label.font = .preferredFont(forTextStyle: .headline)
         if let releaseDate = ghibliFilm?.releaseDate {
             label.text = "\(releaseDate)"
         }
@@ -60,13 +47,8 @@ class FilmDetailsViewController: UIViewController {
     }()
 
     private lazy var originalTitleLabel: UILabel = {
-        let label = UILabel()
+        let label = UILabel.filmTitleLabel(title: ghibliFilm?.originalTitle)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .label
-        label.text = ghibliFilm?.originalTitle
-        label.font = .preferredFont(forTextStyle: .headline)
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 3
         return label
     }()
 
@@ -106,28 +88,16 @@ class FilmDetailsViewController: UIViewController {
 
     private func filmPeopleDidSet() {
         guard !filmPeople.isEmpty else { return }
-        let charactersTitle = UILabel()
-        charactersTitle.font = .preferredFont(forTextStyle: .headline)
-        charactersTitle.textColor = .secondaryLabel
-        charactersTitle.text = "Characters"
+
+        let charactersTitle = UILabel.sectionHeader(text: "Characters")
         charactersTitle.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(charactersTitle)
 
         let firstPerson = filmPeople.first!
-        let firstPersonButton = UIButton(type: .system)
+        let firstPersonButton = UIButton.filmCharacterButton(containerViewSize: containerView.frame.size, title: firstPerson.name)
         firstPersonButton.tag = 0
         firstPersonButton.translatesAutoresizingMaskIntoConstraints = false
-        firstPersonButton.setTitle(firstPerson.name, for: .normal)
-        firstPersonButton.setTitleColor(.label, for: .normal)
-        firstPersonButton.titleLabel?.font = .preferredFont(forTextStyle: .body)
         firstPersonButton.addTarget(self, action: #selector(personButtonAction), for: .touchUpInside)
-        firstPersonButton.contentHorizontalAlignment = .leading
-        let chevronRightImage = UIImage(systemName: "chevron.right")
-        firstPersonButton.setImage(chevronRightImage, for: .normal)
-        let chevronRightImageWidth = chevronRightImage?.size.width ?? 0
-        firstPersonButton.titleEdgeInsets.left = -chevronRightImageWidth
-        firstPersonButton.imageEdgeInsets.left = containerView.frame.width - chevronRightImageWidth - 32
-        firstPersonButton.contentEdgeInsets.right = -containerView.frame.width
         self.view.addSubview(firstPersonButton)
 
         NSLayoutConstraint.activate([
@@ -141,20 +111,10 @@ class FilmDetailsViewController: UIViewController {
         let peopleButtons: [UIButton] = filmPeople[1..<filmPeople.count]
             .enumerated()
             .map { (enumarated: EnumeratedSequence<ArraySlice<GhibliPeople>>.Iterator.Element) -> UIButton in
-                let button = UIButton(type: .system)
+                let button = UIButton.filmCharacterButton(containerViewSize: containerView.frame.size, title: enumarated.element.name)
                 button.translatesAutoresizingMaskIntoConstraints = false
                 button.tag = enumarated.offset + 1
-                button.setTitle(enumarated.element.name, for: .normal)
-                button.setTitleColor(.label, for: .normal)
-                button.titleLabel?.font = .preferredFont(forTextStyle: .body)
                 button.addTarget(self, action: #selector(personButtonAction), for: .touchUpInside)
-                button.contentHorizontalAlignment = .leading
-                let chevronRightImage = UIImage(systemName: "chevron.right")
-                button.setImage(chevronRightImage, for: .normal)
-                let chevronRightImageWidth = chevronRightImage?.size.width ?? 0
-                button.titleEdgeInsets.left = -chevronRightImageWidth
-                button.imageEdgeInsets.left = containerView.frame.width - chevronRightImageWidth - 32
-                button.contentEdgeInsets.right = -containerView.frame.width
                 return button
             }
 

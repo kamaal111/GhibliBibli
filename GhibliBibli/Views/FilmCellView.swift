@@ -29,6 +29,7 @@ class FilmCellView: UICollectionViewCell {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
+        label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .label
         label.font = .preferredFont(forTextStyle: .body)
@@ -37,6 +38,7 @@ class FilmCellView: UICollectionViewCell {
 
     lazy var releaseYearLabel: UILabel = {
         let label = UILabel()
+        label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .secondaryLabel
         label.font = .preferredFont(forTextStyle: .subheadline)

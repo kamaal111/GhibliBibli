@@ -10,6 +10,7 @@ import UIKit
 extension UILabel {
     static func sectionHeader(text: String) -> UILabel {
         let label = UILabel()
+        label.adjustsFontForContentSizeCategory = true
         label.font = .preferredFont(forTextStyle: .headline)
         label.textColor = .secondaryLabel
         label.text = text
@@ -18,6 +19,7 @@ extension UILabel {
 
     static func filmTitleLabel(title: String?) -> UILabel {
         let label = UILabel()
+        label.adjustsFontForContentSizeCategory = true
         label.textColor = .label
         label.text = title
         label.lineBreakMode = .byWordWrapping

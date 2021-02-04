@@ -13,6 +13,7 @@ extension UIButton {
         button.setTitle(title, for: .normal)
         button.setTitleColor(.label, for: .normal)
         button.titleLabel?.font = .preferredFont(forTextStyle: .body)
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
         button.contentHorizontalAlignment = .leading
         let chevronRightImage = UIImage(systemName: "chevron.right")
         button.setImage(chevronRightImage, for: .normal)

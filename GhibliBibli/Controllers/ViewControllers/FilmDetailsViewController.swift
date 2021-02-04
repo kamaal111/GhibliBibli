@@ -31,12 +31,14 @@ class FilmDetailsViewController: UIViewController {
 
     private lazy var filmTitleLabel: UILabel = {
         let label = UILabel.filmTitleLabel(title: ghibliFilm?.title)
+        label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     private lazy var releaseYearLabel: UILabel = {
         let label = UILabel()
+        label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .secondaryLabel
         label.font = .preferredFont(forTextStyle: .headline)
@@ -48,6 +50,7 @@ class FilmDetailsViewController: UIViewController {
 
     private lazy var originalTitleLabel: UILabel = {
         let label = UILabel.filmTitleLabel(title: ghibliFilm?.originalTitle)
+        label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -90,6 +93,7 @@ class FilmDetailsViewController: UIViewController {
         guard !filmPeople.isEmpty else { return }
 
         let charactersTitle = UILabel.sectionHeader(text: "Characters")
+        charactersTitle.adjustsFontForContentSizeCategory = true
         charactersTitle.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(charactersTitle)
 

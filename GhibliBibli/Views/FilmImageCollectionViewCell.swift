@@ -17,7 +17,7 @@ class FilmImageCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             filmImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             filmImageView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
-            filmImageView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            filmImageView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             filmImageView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
         ])
     }

@@ -21,6 +21,7 @@
 		2C61CB4925CBDDDF0064A3ED /* UIImageView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C61CB4825CBDDDF0064A3ED /* UIImageView+extensions.swift */; };
 		2C61CB4E25CBDE0A0064A3ED /* UILabel+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C61CB4D25CBDE0A0064A3ED /* UILabel+extensions.swift */; };
 		2C61CB5325CBDE330064A3ED /* UIButton+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C61CB5225CBDE330064A3ED /* UIButton+extensions.swift */; };
+		2C80CC2525CF37BA001C91D6 /* FilmTitleAndYearCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C80CC2425CF37BA001C91D6 /* FilmTitleAndYearCollectionViewCell.swift */; };
 		2C88916A25BFF9D9006795FA /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88916925BFF9D9006795FA /* HomeCollectionViewController.swift */; };
 		2CCD0BAC25C5D5C500D2685F /* UIScreen+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0BAB25C5D5C500D2685F /* UIScreen+extensions.swift */; };
 		2CCD0BB425C60ECF00D2685F /* GhibliFilmsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0BB325C60ECF00D2685F /* GhibliFilmsModel.swift */; };
@@ -70,6 +71,7 @@
 		2C61CB4825CBDDDF0064A3ED /* UIImageView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+extensions.swift"; sourceTree = "<group>"; };
 		2C61CB4D25CBDE0A0064A3ED /* UILabel+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+extensions.swift"; sourceTree = "<group>"; };
 		2C61CB5225CBDE330064A3ED /* UIButton+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+extensions.swift"; sourceTree = "<group>"; };
+		2C80CC2425CF37BA001C91D6 /* FilmTitleAndYearCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmTitleAndYearCollectionViewCell.swift; sourceTree = "<group>"; };
 		2C88916925BFF9D9006795FA /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
 		2CCD0BAB25C5D5C500D2685F /* UIScreen+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+extensions.swift"; sourceTree = "<group>"; };
 		2CCD0BB325C60ECF00D2685F /* GhibliFilmsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhibliFilmsModel.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				2C11D44B25C4B4D7004F5462 /* FilmThumbnailCollectionViewCell.swift */,
 				2C366B5125CF21A000A76779 /* FilmImageCollectionViewCell.swift */,
+				2C80CC2425CF37BA001C91D6 /* FilmTitleAndYearCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				2CD2A40C25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld in Sources */,
 				2CCD0BC225C60F7300D2685F /* FilmDetailsViewController.swift in Sources */,
 				2C366B5225CF21A000A76779 /* FilmImageCollectionViewCell.swift in Sources */,
+				2C80CC2525CF37BA001C91D6 /* FilmTitleAndYearCollectionViewCell.swift in Sources */,
 				2CD2A40225BEA90E0055E0DC /* AppDelegate.swift in Sources */,
 				2C61CB5325CBDE330064A3ED /* UIButton+extensions.swift in Sources */,
 				2C36334825C7DFFE00D9BCA4 /* Playground.swift in Sources */,

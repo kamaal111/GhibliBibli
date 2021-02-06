@@ -91,7 +91,7 @@ import SwiftUI
 struct FilmThumbnailCollectionViewCell_Previews: PreviewProvider {
     static var previews: some View {
         let filmCell = FilmThumbnailCollectionViewCell(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 200, height: 350)))
-        let ghibliFilm = try! NetworkController.shared.ghibli.getFilms().get().first!
+        let ghibliFilm = try! GhibliNet().getFilms().get().first!
         filmCell.setFilm(ghibliFilm)
         return filmCell.toSwiftUIView().previewLayout(.sizeThatFits)
     }

@@ -20,7 +20,7 @@ class FilmCharactersSectionHeaderCollectionViewCell: UICollectionViewCell {
         ])
     }
 
-    lazy var label: UILabel = {
+    private lazy var label: UILabel = {
         let label = UILabel.sectionHeader(text: "Characters")
         label.translatesAutoresizingMaskIntoConstraints = false
         label.adjustsFontForContentSizeCategory = false

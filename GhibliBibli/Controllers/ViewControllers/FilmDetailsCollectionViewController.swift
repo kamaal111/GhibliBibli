@@ -61,7 +61,7 @@ class FilmDetailsCollectionViewController: UICollectionViewController {
             if filmPeople.isEmpty {
                 return 0
             }
-            return filmDetailsSection.items.count
+            return filmDetailsSection.items.count + filmPeople.count - 1
         case .details:
             return filmDetailsSection.items.count
         }
@@ -74,18 +74,25 @@ class FilmDetailsCollectionViewController: UICollectionViewController {
         switch filmDetailsItem {
         case .filmImage:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filmDetailsItem.reuseIdentifier, for: indexPath) as? FilmImageCollectionViewCell else {
-                fatalError("could not cast cell to FilmImageCollectionViewCell")
+                fatalError("could not cast cell as FilmImageCollectionViewCell")
             }
             cell.setImage(ghibliFilm?.uiImage)
             return cell
         case .filmTitleAndReleaseYearReuse:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filmDetailsItem.reuseIdentifier, for: indexPath) as? FilmTitleAndYearCollectionViewCell else {
-                fatalError("could not cast cell to FilmTitleAndYearCollectionViewCell")
+                fatalError("could not cast cell as FilmTitleAndYearCollectionViewCell")
             }
             cell.setData(title: ghibliFilm?.title, releaseYear: ghibliFilm?.releaseDate, originalTitle: ghibliFilm?.originalTitle)
             return cell
         case .characterHeader:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filmDetailsItem.reuseIdentifier, for: indexPath)
+            return cell
+        case .character:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filmDetailsItem.reuseIdentifier, for: indexPath) as? FilmCharacterButtonCollectionViewCell else {
+                fatalError("could not cast cell as FilmCharacterButtonViewCell")
+            }
+            let filmPerson = filmPeople[indexPath.row - 1]
+            cell.setText(filmPerson.name)
             return cell
         }
     }
@@ -114,6 +121,7 @@ private enum FilmDetailsItems: String, CaseIterable {
     case filmTitleAndReleaseYearReuse = "FilmTitleAndReleaseYearCell"
 
     case characterHeader = "CharacterHeaderCell"
+    case character = "CharacterCell"
 }
 
 extension FilmDetailsItems {
@@ -133,6 +141,12 @@ extension FilmDetailsItems {
                 fatalError("could not find \(self.rawValue) in character section")
             }
             return IndexPath(row: row, section: section)
+        case .character:
+            guard let section = FilmDetailsSections.allCases.firstIndex(of: .characters),
+                  let row = FilmDetailsSections.characters.items.firstIndex(where: { $0 == self }) else {
+                fatalError("could not find \(self.rawValue) in character section")
+            }
+            return IndexPath(row: row, section: section)
         }
     }
 
@@ -144,6 +158,8 @@ extension FilmDetailsItems {
             return FilmTitleAndYearCollectionViewCell.self
         case .characterHeader:
             return FilmCharactersSectionHeaderCollectionViewCell.self
+        case .character:
+            return FilmCharacterButtonCollectionViewCell.self
         }
     }
 
@@ -152,12 +168,17 @@ extension FilmDetailsItems {
         case .filmImage, .filmTitleAndReleaseYearReuse:
             return CGSize(width: (collectionViewSize.width / 2) - 16, height: collectionViewSize.width / 1.2)
         case .characterHeader:
-            return CGSize(width: collectionViewSize.width - 16, height: 20)
+            return CGSize(width: collectionViewSize.width - 16, height: 16)
+        case .character:
+            return CGSize(width: collectionViewSize.width - 16, height: 16)
         }
     }
 
     static func findByIndexPath(_ indexPath: IndexPath) -> FilmDetailsItems? {
-        FilmDetailsItems.allCases.first { $0.indexPath == indexPath }
+        if indexPath.section == 1 && indexPath.row > 0 {
+            return .character
+        }
+        return FilmDetailsItems.allCases.first { $0.indexPath == indexPath }
     }
 }
 
@@ -174,7 +195,7 @@ extension FilmDetailsSections {
         case .details:
             return [.filmImage, .filmTitleAndReleaseYearReuse]
         case .characters:
-            return [.characterHeader]
+            return [.characterHeader, .character]
         }
     }
 

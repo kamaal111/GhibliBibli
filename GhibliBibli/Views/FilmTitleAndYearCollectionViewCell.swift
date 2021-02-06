@@ -70,12 +70,10 @@ class FilmTitleAndYearCollectionViewCell: UICollectionViewCell {
 
 #if DEBUG
 import SwiftUI
-import GhibliNet
 struct FilmTitleAndYearCollectionViewCell_Previews: PreviewProvider {
     static var previews: some View {
         let viewCell = FilmTitleAndYearCollectionViewCell(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 200, height: 350)))
-        let ghibliFilm = try? GhibliNet().getFilms().get().first
-        viewCell.setData(title: ghibliFilm?.title, releaseYear: ghibliFilm?.releaseDate, originalTitle: ghibliFilm?.originalTitle)
+        viewCell.setData(title: "Title", releaseYear: 1994, originalTitle: "Original Title")
         return viewCell.toSwiftUIView().previewLayout(.sizeThatFits)
     }
 }

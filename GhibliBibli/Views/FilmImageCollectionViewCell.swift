@@ -40,11 +40,12 @@ class FilmImageCollectionViewCell: UICollectionViewCell {
 
 #if DEBUG
 import SwiftUI
+import GhibliNet
 struct FilmImageCollectionViewCell_Previews: PreviewProvider {
     static var previews: some View {
         let filmCell = FilmImageCollectionViewCell(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 200, height: 350)))
-        let ghibliFilm = try! NetworkController.shared.ghibli.getFilms().get().first!
-        filmCell.setImage(ghibliFilm.uiImage)
+        let ghibliFilm = try? GhibliNet().getFilms().get().first
+        filmCell.setImage(ghibliFilm?.uiImage)
         return filmCell.toSwiftUIView().previewLayout(.sizeThatFits)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  FilmCellView.swift
+//  FilmThumbnailCollectionViewCell.swift
 //  GhibliBibli
 //
 //  Created by Kamaal M Farah on 29/01/2021.
@@ -8,7 +8,7 @@
 import UIKit
 import GhibliNet
 
-class FilmCellView: UICollectionViewCell {
+class FilmThumbnailCollectionViewCell: UICollectionViewCell {
 
     private var film: GhibliFilm? {
         didSet { populateViewWithFilm() }
@@ -88,9 +88,9 @@ class FilmCellView: UICollectionViewCell {
 
 #if DEBUG
 import SwiftUI
-struct FilmCellView_Previews: PreviewProvider {
+struct FilmThumbnailCollectionViewCell_Previews: PreviewProvider {
     static var previews: some View {
-        let filmCell = FilmCellView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 200, height: 350)))
+        let filmCell = FilmThumbnailCollectionViewCell(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 200, height: 350)))
         let ghibliFilm = try! NetworkController.shared.ghibli.getFilms().get().first!
         filmCell.setFilm(ghibliFilm)
         return filmCell.toSwiftUIView().previewLayout(.sizeThatFits)

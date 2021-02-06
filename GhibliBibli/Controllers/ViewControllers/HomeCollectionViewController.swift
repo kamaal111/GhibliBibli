@@ -15,21 +15,9 @@ class HomeCollectionViewController: UICollectionViewController {
     private var networker = NetworkController.shared
     private var ghibliFilmsModelController = GhibliFilmsModelController()
 
-    override init(collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(collectionViewLayout: layout)
-    }
-
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.register(FilmCellView.self, forCellWithReuseIdentifier: filmCellReuseIdentifier)
+        self.collectionView.register(FilmThumbnailCollectionViewCell.self, forCellWithReuseIdentifier: filmCellReuseIdentifier)
 
         self.collectionView.backgroundColor = .systemBackground
         self.title = "Ghibli Bibli"
@@ -66,7 +54,7 @@ class HomeCollectionViewController: UICollectionViewController {
     }
     #endif
 
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int { 1 }
 
@@ -75,23 +63,24 @@ class HomeCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filmCellReuseIdentifier, for: indexPath) as! FilmCellView
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filmCellReuseIdentifier, for: indexPath) as! FilmThumbnailCollectionViewCell
         let ghibliFilm = ghibliFilmsModelController.ghibliFilms[indexPath.row]
         cell.setFilm(ghibliFilm)
         return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let filmDetailsViewController = FilmDetailsViewController()
+        let layout = UICollectionViewFlowLayout()
+        let filmDetailsCollectionViewController = FilmDetailsCollectionViewController(collectionViewLayout: layout)
         let ghibliFilm = ghibliFilmsModelController.ghibliFilms[indexPath.row]
-        filmDetailsViewController.ghibliFilm = ghibliFilm
-        self.navigationController?.pushViewController(filmDetailsViewController, animated: true)
+        filmDetailsCollectionViewController.ghibliFilm = ghibliFilm
+        self.navigationController?.pushViewController(filmDetailsCollectionViewController, animated: true)
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 
 }
 
-// MARK: UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension HomeCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

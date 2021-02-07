@@ -28,6 +28,18 @@ class FilmCharacterButtonCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override var isHighlighted: Bool {
+        didSet {
+            if isHighlighted {
+                imageView.alpha = 0.4
+                label.alpha = 0.4
+            } else {
+                imageView.alpha = 1
+                label.alpha = 1
+            }
+        }
+    }
+
     func setText(_ text: String) {
         label.text = text
     }

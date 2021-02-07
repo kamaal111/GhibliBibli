@@ -65,7 +65,7 @@ class HomeCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filmCellReuseIdentifier, for: indexPath) as! FilmThumbnailCollectionViewCell
         let ghibliFilm = ghibliFilmsModelController.ghibliFilms[indexPath.row]
-        cell.setFilm(ghibliFilm)
+        cell.setData(image: ghibliFilm.uiImage, title: ghibliFilm.title, releaseYear: ghibliFilm.releaseDate)
         return cell
     }
 

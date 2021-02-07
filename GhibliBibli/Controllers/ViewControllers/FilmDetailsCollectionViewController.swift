@@ -67,6 +67,16 @@ class FilmDetailsCollectionViewController: UICollectionViewController {
         }
     }
 
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let filmDetailsItem = FilmDetailsItems.findByIndexPath(indexPath), filmDetailsItem == .character else {
+            return
+        }
+        let characterDetailViewController = CharacterDetailViewController()
+        characterDetailViewController.character = filmPeople[indexPath.row - 1]
+        self.navigationController?.pushViewController(characterDetailViewController, animated: true)
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let filmDetailsItem = FilmDetailsItems.findByIndexPath(indexPath) else {
             fatalError("cell not registered in FilmDetailsItems")
@@ -167,9 +177,7 @@ extension FilmDetailsItems {
         switch self {
         case .filmImage, .filmTitleAndReleaseYearReuse:
             return CGSize(width: (collectionViewSize.width / 2) - 16, height: collectionViewSize.width / 1.2)
-        case .characterHeader:
-            return CGSize(width: collectionViewSize.width - 16, height: 16)
-        case .character:
+        case .characterHeader, .character:
             return CGSize(width: collectionViewSize.width - 16, height: 16)
         }
     }

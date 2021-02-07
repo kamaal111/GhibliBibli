@@ -10,9 +10,7 @@ import GhibliNet
 
 class FilmThumbnailCollectionViewCell: UICollectionViewCell {
 
-    private var film: GhibliFilm? {
-        didSet { populateViewWithFilm() }
-    }
+    private var film: GhibliFilm?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,8 +21,26 @@ class FilmThumbnailCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setFilm(_ film: GhibliFilm) {
-        self.film = film
+    override var isHighlighted: Bool {
+        didSet {
+            if isHighlighted {
+                filmImageView.alpha = 0.4
+                releaseYearLabel.alpha = 0.4
+                titleLabel.alpha = 0.4
+            } else {
+                filmImageView.alpha = 1
+                releaseYearLabel.alpha = 1
+                titleLabel.alpha = 1
+            }
+        }
+    }
+
+    func setData(image: UIImage?, title: String?, releaseYear: Int?) {
+        filmImageView.image = image
+        titleLabel.text = title
+        if let releaseYear = releaseYear {
+            releaseYearLabel.text = "\(releaseYear)"
+        }
     }
 
     private lazy var titleLabel: UILabel = {
@@ -50,6 +66,7 @@ class FilmThumbnailCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleToFill
+        imageView.layer.cornerRadius = 8
         return imageView
     }()
 
@@ -90,9 +107,9 @@ class FilmThumbnailCollectionViewCell: UICollectionViewCell {
 import SwiftUI
 struct FilmThumbnailCollectionViewCell_Previews: PreviewProvider {
     static var previews: some View {
-        let filmCell = FilmThumbnailCollectionViewCell(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 200, height: 350)))
+        let filmCell = FilmThumbnailCollectionViewCell(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 150, height: 350)))
         let ghibliFilm = try! GhibliNet().getFilms().get().first!
-        filmCell.setFilm(ghibliFilm)
+        filmCell.setData(image: ghibliFilm.uiImage, title: ghibliFilm.title, releaseYear: ghibliFilm.releaseDate)
         return filmCell.toSwiftUIView().previewLayout(.sizeThatFits)
     }
 }

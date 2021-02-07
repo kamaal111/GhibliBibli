@@ -20,7 +20,6 @@
 		2C60057B25BF75B6007C01B3 /* UIViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60057A25BF75B6007C01B3 /* UIViewController+extensions.swift */; };
 		2C61CB4925CBDDDF0064A3ED /* UIImageView+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C61CB4825CBDDDF0064A3ED /* UIImageView+extensions.swift */; };
 		2C61CB4E25CBDE0A0064A3ED /* UILabel+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C61CB4D25CBDE0A0064A3ED /* UILabel+extensions.swift */; };
-		2C61CB5325CBDE330064A3ED /* UIButton+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C61CB5225CBDE330064A3ED /* UIButton+extensions.swift */; };
 		2C80CC2525CF37BA001C91D6 /* FilmTitleAndYearCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C80CC2425CF37BA001C91D6 /* FilmTitleAndYearCollectionViewCell.swift */; };
 		2C80CC2A25CF457F001C91D6 /* FilmCharactersSectionHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C80CC2925CF457F001C91D6 /* FilmCharactersSectionHeaderCollectionViewCell.swift */; };
 		2C80CC2F25CF524A001C91D6 /* FilmCharacterButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C80CC2E25CF524A001C91D6 /* FilmCharacterButtonCollectionViewCell.swift */; };
@@ -28,7 +27,6 @@
 		2CCD0BAC25C5D5C500D2685F /* UIScreen+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0BAB25C5D5C500D2685F /* UIScreen+extensions.swift */; };
 		2CCD0BB425C60ECF00D2685F /* GhibliFilmsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0BB325C60ECF00D2685F /* GhibliFilmsModel.swift */; };
 		2CCD0BBA25C60F1100D2685F /* GhibliFilmsModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0BB925C60F1100D2685F /* GhibliFilmsModelController.swift */; };
-		2CCD0BC225C60F7300D2685F /* FilmDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0BC125C60F7300D2685F /* FilmDetailsViewController.swift */; };
 		2CD2A40225BEA90E0055E0DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A40125BEA90E0055E0DC /* AppDelegate.swift */; };
 		2CD2A40425BEA90E0055E0DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A40325BEA90E0055E0DC /* SceneDelegate.swift */; };
 		2CD2A40C25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CD2A40A25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld */; };
@@ -72,7 +70,6 @@
 		2C60057A25BF75B6007C01B3 /* UIViewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extensions.swift"; sourceTree = "<group>"; };
 		2C61CB4825CBDDDF0064A3ED /* UIImageView+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+extensions.swift"; sourceTree = "<group>"; };
 		2C61CB4D25CBDE0A0064A3ED /* UILabel+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+extensions.swift"; sourceTree = "<group>"; };
-		2C61CB5225CBDE330064A3ED /* UIButton+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+extensions.swift"; sourceTree = "<group>"; };
 		2C80CC2425CF37BA001C91D6 /* FilmTitleAndYearCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmTitleAndYearCollectionViewCell.swift; sourceTree = "<group>"; };
 		2C80CC2925CF457F001C91D6 /* FilmCharactersSectionHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCharactersSectionHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		2C80CC2E25CF524A001C91D6 /* FilmCharacterButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCharacterButtonCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -80,7 +77,6 @@
 		2CCD0BAB25C5D5C500D2685F /* UIScreen+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+extensions.swift"; sourceTree = "<group>"; };
 		2CCD0BB325C60ECF00D2685F /* GhibliFilmsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhibliFilmsModel.swift; sourceTree = "<group>"; };
 		2CCD0BB925C60F1100D2685F /* GhibliFilmsModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhibliFilmsModelController.swift; sourceTree = "<group>"; };
-		2CCD0BC125C60F7300D2685F /* FilmDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsViewController.swift; sourceTree = "<group>"; };
 		2CD2A3FE25BEA90E0055E0DC /* GhibliBibli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GhibliBibli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD2A40125BEA90E0055E0DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CD2A40325BEA90E0055E0DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -188,7 +184,6 @@
 				2CCD0BAB25C5D5C500D2685F /* UIScreen+extensions.swift */,
 				2C61CB4825CBDDDF0064A3ED /* UIImageView+extensions.swift */,
 				2C61CB4D25CBDE0A0064A3ED /* UILabel+extensions.swift */,
-				2C61CB5225CBDE330064A3ED /* UIButton+extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -306,7 +301,6 @@
 			isa = PBXGroup;
 			children = (
 				2C88916925BFF9D9006795FA /* HomeCollectionViewController.swift */,
-				2CCD0BC125C60F7300D2685F /* FilmDetailsViewController.swift */,
 				2C3F878A25C9FEFE00275953 /* CharacterDetailViewController.swift */,
 				2C5AACC825CF0B2C007FFD61 /* FilmDetailsCollectionViewController.swift */,
 			);
@@ -479,11 +473,9 @@
 				2C03985F25C3EB6F004028ED /* UIColor+extensions.swift in Sources */,
 				2CD2A40C25BEA90E0055E0DC /* GhibliBibli.xcdatamodeld in Sources */,
 				2C80CC2A25CF457F001C91D6 /* FilmCharactersSectionHeaderCollectionViewCell.swift in Sources */,
-				2CCD0BC225C60F7300D2685F /* FilmDetailsViewController.swift in Sources */,
 				2C366B5225CF21A000A76779 /* FilmImageCollectionViewCell.swift in Sources */,
 				2C80CC2525CF37BA001C91D6 /* FilmTitleAndYearCollectionViewCell.swift in Sources */,
 				2CD2A40225BEA90E0055E0DC /* AppDelegate.swift in Sources */,
-				2C61CB5325CBDE330064A3ED /* UIButton+extensions.swift in Sources */,
 				2C36334825C7DFFE00D9BCA4 /* Playground.swift in Sources */,
 				2CD2A40425BEA90E0055E0DC /* SceneDelegate.swift in Sources */,
 				2C61CB4E25CBDE0A0064A3ED /* UILabel+extensions.swift in Sources */,

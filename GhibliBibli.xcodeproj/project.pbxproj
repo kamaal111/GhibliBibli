@@ -24,6 +24,7 @@
 		2C80CC2A25CF457F001C91D6 /* FilmCharactersSectionHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C80CC2925CF457F001C91D6 /* FilmCharactersSectionHeaderCollectionViewCell.swift */; };
 		2C80CC2F25CF524A001C91D6 /* FilmCharacterButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C80CC2E25CF524A001C91D6 /* FilmCharacterButtonCollectionViewCell.swift */; };
 		2C88916A25BFF9D9006795FA /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C88916925BFF9D9006795FA /* HomeCollectionViewController.swift */; };
+		2C9B7CE025D1E1C500062F19 /* PartialSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9B7CDF25D1E1C500062F19 /* PartialSheetViewController.swift */; };
 		2CCD0BAC25C5D5C500D2685F /* UIScreen+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0BAB25C5D5C500D2685F /* UIScreen+extensions.swift */; };
 		2CCD0BB425C60ECF00D2685F /* GhibliFilmsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0BB325C60ECF00D2685F /* GhibliFilmsModel.swift */; };
 		2CCD0BBA25C60F1100D2685F /* GhibliFilmsModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD0BB925C60F1100D2685F /* GhibliFilmsModelController.swift */; };
@@ -74,6 +75,7 @@
 		2C80CC2925CF457F001C91D6 /* FilmCharactersSectionHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCharactersSectionHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		2C80CC2E25CF524A001C91D6 /* FilmCharacterButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCharacterButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		2C88916925BFF9D9006795FA /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
+		2C9B7CDF25D1E1C500062F19 /* PartialSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialSheetViewController.swift; sourceTree = "<group>"; };
 		2CCD0BAB25C5D5C500D2685F /* UIScreen+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+extensions.swift"; sourceTree = "<group>"; };
 		2CCD0BB325C60ECF00D2685F /* GhibliFilmsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhibliFilmsModel.swift; sourceTree = "<group>"; };
 		2CCD0BB925C60F1100D2685F /* GhibliFilmsModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhibliFilmsModelController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		2C9B7CEA25D1E9A000062F19 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				2C5AACC825CF0B2C007FFD61 /* FilmDetailsCollectionViewController.swift */,
+				2C3F878A25C9FEFE00275953 /* CharacterDetailViewController.swift */,
+				2C88916925BFF9D9006795FA /* HomeCollectionViewController.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		2CCD0BB825C60EFF00D2685F /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,9 +312,8 @@
 		2CD2A46525BEAD5F0055E0DC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2C88916925BFF9D9006795FA /* HomeCollectionViewController.swift */,
-				2C3F878A25C9FEFE00275953 /* CharacterDetailViewController.swift */,
-				2C5AACC825CF0B2C007FFD61 /* FilmDetailsCollectionViewController.swift */,
+				2C9B7CEA25D1E9A000062F19 /* Screens */,
+				2C9B7CDF25D1E1C500062F19 /* PartialSheetViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -480,6 +491,7 @@
 				2CD2A40425BEA90E0055E0DC /* SceneDelegate.swift in Sources */,
 				2C61CB4E25CBDE0A0064A3ED /* UILabel+extensions.swift in Sources */,
 				2C80CC2F25CF524A001C91D6 /* FilmCharacterButtonCollectionViewCell.swift in Sources */,
+				2C9B7CE025D1E1C500062F19 /* PartialSheetViewController.swift in Sources */,
 				2C88916A25BFF9D9006795FA /* HomeCollectionViewController.swift in Sources */,
 				2C60057B25BF75B6007C01B3 /* UIViewController+extensions.swift in Sources */,
 				2C36334E25C7E51100D9BCA4 /* FilmDetailPlayground.swift in Sources */,

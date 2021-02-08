@@ -30,21 +30,6 @@ class FilmDetailsCollectionViewController: UICollectionViewController {
         self.navigationItem.largeTitleDisplayMode = .never
         self.title = ghibliFilm?.title
         self.collectionView.backgroundColor = .systemBackground
-
-        DispatchQueue.global(qos: .utility).async { [weak self] in
-            guard let self = self else { return }
-            if let ghibliFilm = self.ghibliFilm {
-                switch self.networker.ghibli.getFilmPeople(of: ghibliFilm) {
-                case .failure(let failure):
-                    print(failure.localizedDescription)
-                case .success(let success):
-                    self.filmPeople = success
-                    DispatchQueue.main.async { [weak self] in
-                        self?.collectionView.reloadData()
-                    }
-                }
-            }
-        }
     }
 
     // MARK: - UICollectionViewDataSource
@@ -53,28 +38,30 @@ class FilmDetailsCollectionViewController: UICollectionViewController {
         FilmDetailsSections.allCases.count
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let filmDetailsSection = FilmDetailsSections.allCases[section]
         switch filmDetailsSection {
         case .characters:
-            if filmPeople.isEmpty {
-                return 0
-            }
+            guard !filmPeople.isEmpty else { return 0 }
             return filmDetailsSection.items.count + filmPeople.count - 1
-        case .details:
-            return filmDetailsSection.items.count
+        case .watchList, .details: return filmDetailsSection.items.count
         }
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let filmDetailsItem = FilmDetailsItems.findByIndexPath(indexPath), filmDetailsItem == .character else {
-            return
+        guard let filmDetailsItem = FilmDetailsItems.findByIndexPath(indexPath) else { return }
+        switch filmDetailsItem {
+        case .character:
+            let characterDetailViewController = CharacterDetailViewController()
+            characterDetailViewController.character = filmPeople[indexPath.row - 1]
+            self.navigationController?.pushViewController(characterDetailViewController, animated: true)
+            collectionView.deselectItem(at: indexPath, animated: true)
+        case .watchListState:
+            let partialSheetViewController = PartialSheetViewController(sheetHeight: self.view.frame.height / 3)
+            partialSheetViewController.modalPresentationStyle = .custom
+            present(partialSheetViewController, animated: true, completion: nil)
+        case .characterHeader, .filmImage, .filmTitleAndReleaseYearReuse: break
         }
-        let characterDetailViewController = CharacterDetailViewController()
-        characterDetailViewController.character = filmPeople[indexPath.row - 1]
-        self.navigationController?.pushViewController(characterDetailViewController, animated: true)
-        collectionView.deselectItem(at: indexPath, animated: true)
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -93,6 +80,9 @@ class FilmDetailsCollectionViewController: UICollectionViewController {
                 fatalError("could not cast cell as FilmTitleAndYearCollectionViewCell")
             }
             cell.setData(title: ghibliFilm?.title, releaseYear: ghibliFilm?.releaseDate, originalTitle: ghibliFilm?.originalTitle)
+            return cell
+        case .watchListState:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filmDetailsItem.reuseIdentifier, for: indexPath)
             return cell
         case .characterHeader:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filmDetailsItem.reuseIdentifier, for: indexPath)
@@ -124,17 +114,38 @@ extension FilmDetailsCollectionViewController: UICollectionViewDelegateFlowLayou
     }
 }
 
+// MARK: - Internal methods
+
+private extension FilmDetailsCollectionViewController {
+    func popultePeople() {
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            guard let self = self else { return }
+            if let ghibliFilm = self.ghibliFilm {
+                switch self.networker.ghibli.getFilmPeople(of: ghibliFilm) {
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                case .success(let success):
+                    self.filmPeople = success
+                    DispatchQueue.main.async { [weak self] in
+                        self?.collectionView.reloadData()
+                    }
+                }
+            }
+        }
+    }
+}
+
 // MARK: - Items configurations
 
 private enum FilmDetailsItems: String, CaseIterable {
     case filmImage = "FilmImageCell"
     case filmTitleAndReleaseYearReuse = "FilmTitleAndReleaseYearCell"
 
+    case watchListState = "WatchListStateCell"
+
     case characterHeader = "CharacterHeaderCell"
     case character = "CharacterCell"
-}
 
-extension FilmDetailsItems {
     var reuseIdentifier: String { self.rawValue }
 
     var indexPath: IndexPath {
@@ -142,6 +153,12 @@ extension FilmDetailsItems {
         case .filmImage, .filmTitleAndReleaseYearReuse:
             guard let section = FilmDetailsSections.allCases.firstIndex(of: .details),
                   let row = FilmDetailsSections.details.items.firstIndex(where: { $0 == self }) else {
+                fatalError("could not find \(self.rawValue) in details section")
+            }
+            return IndexPath(row: row, section: section)
+        case .watchListState:
+            guard let section = FilmDetailsSections.allCases.firstIndex(of: .watchList),
+                  let row = FilmDetailsSections.watchList.items.firstIndex(where: { $0 == self }) else {
                 fatalError("could not find \(self.rawValue) in details section")
             }
             return IndexPath(row: row, section: section)
@@ -162,23 +179,21 @@ extension FilmDetailsItems {
 
     var collectionViewCellType: UICollectionViewCell.Type {
         switch self {
-        case .filmImage:
-            return FilmImageCollectionViewCell.self
-        case .filmTitleAndReleaseYearReuse:
-            return FilmTitleAndYearCollectionViewCell.self
-        case .characterHeader:
-            return FilmCharactersSectionHeaderCollectionViewCell.self
-        case .character:
-            return FilmCharacterButtonCollectionViewCell.self
+        case .filmImage: return FilmImageCollectionViewCell.self
+        case .filmTitleAndReleaseYearReuse: return FilmTitleAndYearCollectionViewCell.self
+        case .watchListState: return WatchListStateCollectionViewCell.self
+        case .characterHeader: return FilmCharactersSectionHeaderCollectionViewCell.self
+        case .character: return FilmCharacterButtonCollectionViewCell.self
         }
     }
 
     func cellSize(collectionViewSize: CGSize) -> CGSize {
+        let collectionViewWidth = collectionViewSize.width
         switch self {
         case .filmImage, .filmTitleAndReleaseYearReuse:
-            return CGSize(width: (collectionViewSize.width / 2) - 16, height: collectionViewSize.width / 1.2)
-        case .characterHeader, .character:
-            return CGSize(width: collectionViewSize.width - 16, height: 16)
+            return CGSize(width: (collectionViewWidth / 2) - 16, height: collectionViewWidth / 1.2)
+        case .watchListState: return CGSize(width: collectionViewWidth - 16, height: 40)
+        case .characterHeader, .character: return CGSize(width: collectionViewWidth - 32, height: 16)
         }
     }
 
@@ -190,29 +205,41 @@ extension FilmDetailsItems {
     }
 }
 
+class WatchListStateCollectionViewCell: UICollectionViewCell {
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .green
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+}
+
 // MARK: - Sections configurations
 
 private enum FilmDetailsSections: CaseIterable {
     case details
+    case watchList
     case characters
 }
 
 extension FilmDetailsSections {
     var items: [FilmDetailsItems] {
         switch self {
-        case .details:
-            return [.filmImage, .filmTitleAndReleaseYearReuse]
-        case .characters:
-            return [.characterHeader, .character]
+        case .details: return [.filmImage, .filmTitleAndReleaseYearReuse]
+        case .watchList: return [.watchListState]
+        case .characters: return [.characterHeader, .character]
         }
     }
 
     var edgeInsets: UIEdgeInsets {
         switch self {
-        case .details:
-            return UIEdgeInsets(top: 16, left: 8, bottom: 8, right: 8)
-        case .characters:
-            return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        case .details: return UIEdgeInsets(top: 16, left: 8, bottom: 8, right: 8)
+        case .watchList: return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        case .characters: return UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         }
     }
 }

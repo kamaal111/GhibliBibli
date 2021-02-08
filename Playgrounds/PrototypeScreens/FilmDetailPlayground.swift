@@ -10,6 +10,9 @@ import GhibliNet
 
 struct FilmDetailPlayground: View {
     @State private var ghibliPeople: [GhibliPeople] = []
+    @State private var addedToList = false
+    @State private var score = 0
+    @State private var showScoreSheet = false
 
     let ghibliFilm: GhibliFilm?
 
@@ -36,6 +39,16 @@ struct FilmDetailPlayground: View {
                     .padding(.horizontal, 16)
                     .frame(maxWidth: .infinity, alignment: .topLeading)
                 }
+                HStack {
+                    Button(action: { addedToList.toggle() }, label: {
+                        Text(addedToList ? "Removed from list" : "Add to list")
+                    })
+                    Spacer()
+                    Button(action: { showScoreSheet = true }, label: {
+                        Text("Not scored")
+                    })
+                }
+                .padding(.top, 24)
                 VStack(alignment: .leading) {
                     Text("Characters")
                         .font(.headline)
@@ -60,6 +73,12 @@ struct FilmDetailPlayground: View {
             .padding(.horizontal, 16)
         }
         .navigationBarTitle(Text(ghibliFilm?.title ?? ""), displayMode: .inline)
+        .sheet(isPresented: $showScoreSheet, content: {
+            Picker(selection: $score, label: Text("Picker"), content: {
+                Text("1").tag(1)
+                Text("2").tag(2)
+            })
+        })
         .onAppear(perform: {
             if let ghibliFilm = ghibliFilm {
                 switch networker.ghibli.getFilmPeople(of: ghibliFilm) {
